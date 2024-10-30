@@ -43,7 +43,6 @@ function selectRandomPlayer() {
     // Aggiorna la selezione e segna il personaggio come selezionato
     selectedPlayerCharacter = characterName; // Memorizza il personaggio selezionato
     localStorage.setItem('selectedPlayerCharacter', selectedPlayerCharacter); // Salva nel localStorage
-    alert(`Personaggio del giocatore selezionato: ${characterName}`);
 
     // Aggiungi la classe "selected" al personaggio casuale
     const playerGridCharacters = document.querySelectorAll('#player-grid .character');
@@ -52,6 +51,7 @@ function selectRandomPlayer() {
     const selectedCharacterElement = Array.from(playerGridCharacters).find(c => c.getAttribute('data-name') === characterName);
     if (selectedCharacterElement) {
         selectedCharacterElement.classList.add('selected'); // Aggiungi la selezione al personaggio scelto
+        selectedCharacterElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } else {
         // Log: Se il personaggio selezionato non viene trovato
         console.error("Elemento selezionato non trovato nella griglia:", characterName);
@@ -79,7 +79,6 @@ function selectRandomCpu() {
     // Aggiorna la selezione e segna il personaggio come selezionato
     selectedCpuCharacter = characterName; // Memorizza il personaggio della CPU
     localStorage.setItem('selectedCpuCharacter', selectedCpuCharacter); // Salva nel localStorage
-    alert(`Personaggio della CPU selezionato: ${characterName}`);
 
     // Aggiungi la classe "selected" al personaggio casuale
     const cpuGridCharacters = document.querySelectorAll('#cpu-grid .character');
@@ -88,6 +87,7 @@ function selectRandomCpu() {
     const selectedCharacterElement = Array.from(cpuGridCharacters).find(c => c.getAttribute('data-name') === characterName);
     if (selectedCharacterElement) {
         selectedCharacterElement.classList.add('selected'); // Aggiungi la selezione al personaggio scelto
+        selectedCharacterElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } else {
         // Log: Se il personaggio selezionato non viene trovato
         console.error("Elemento selezionato della CPU non trovato nella griglia:", characterName);
