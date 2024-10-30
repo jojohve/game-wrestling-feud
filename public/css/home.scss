@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 150px); /* 5 colonne */
+    gap: 20px; /* Spaziatura tra le immagini */
+    margin: 20px;
+}
+
+.character {
+    position: relative;
+    cursor: pointer;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    transition: border 0.3s ease, transform 0.3s ease;
+}
+
+.character img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.character.selected {
+    border: 3px solid gold; /* Bordo dorato per il personaggio selezionato */
+    transform: scale(1.1); /* Aumenta leggermente la dimensione */
+}
+
+.grid-container {
+    margin-bottom: 40px;
+}
+
+.confirm-button {
+    padding: 10px 20px;
+    background-color: gold;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+    background-color: #FFD700; /* Colore leggermente più scuro al passaggio del mouse */
+}

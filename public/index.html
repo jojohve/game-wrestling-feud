@@ -6,6 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wrestling Feud Generator!</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .message {
+            display: none;
+            /* Inizialmente nascosto */
+            color: #000000;
+            font-size: smaller;
+            background-color: rgba(236, 236, 236, 0.9);
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 18px;
+            text-align: center;
+            position: absolute;
+            /* Posizione assoluta per sovrapporre */
+            top: 35%;
+            /* Centra verticalmente */
+            left: 50%;
+            /* Centra orizzontalmente */
+            transform: translate(-50%, -50%);
+            /* Centra il messaggio */
+            z-index: 10;
+            /* Z-index superiore per sovrapporre */
+            opacity: 1;
+            /* Opacità iniziale */
+            transition: opacity 3s;
+            /* Transizione per l'opacità */
+        }
+
+        /* Stile per il messaggio durante la transizione in uscita */
+        .message.fade-out {
+            opacity: 0;
+            /* Opacità finale per la transizione in uscita */
+        }
+    </style>
 </head>
 
 <body>
@@ -14,12 +48,13 @@
     <div class="content">
         <div class="pre-game-conteiner">
             <h1>Wrestling Feud Generator!</h1>
-            <a href="#">START GAME
+            <div class="message" id="message">Tieni premuto per iniziare</div>
+            <a href="#" id="startGame">START GAME
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-              </a>
+            </a>
         </div>
 
         <div class="faq-contenitor">
@@ -53,6 +88,46 @@
         </div>
     </div>
 
+    <script>
+        //Animazione Button
+        const startGameButton = document.getElementById('startGame');
+        const messageDiv = document.getElementById('message');
+
+        startGameButton.addEventListener('mousedown', function () {
+            // Inizio dell'animazione
+            startGameButton.classList.add('active');
+            // Mostra il messaggio
+            messageDiv.style.display = 'block'; // Mostra il messaggio
+            messageDiv.classList.remove('fade-out'); // Rimuove eventuale classe di fade-out
+        });
+
+        startGameButton.addEventListener('mouseup', function () {
+            // Fine dell'animazione e verifica se l'animazione è completata
+            startGameButton.classList.remove('active');
+            // Nascondi il messaggio con transizione
+            messageDiv.classList.add('fade-out');
+            setTimeout(() => {
+                messageDiv.style.display = 'none'; // Nascondi il messaggio dopo la transizione
+            }, 1000); // Attendi 1 secondo prima di nascondere
+        });
+
+        startGameButton.addEventListener('mouseleave', function () {
+            // Rimuovi la classe active e nascondi il messaggio se il cursore esce dall'area del pulsante
+            startGameButton.classList.remove('active');
+            messageDiv.classList.add('fade-out');
+            setTimeout(() => {
+                messageDiv.style.display = 'none'; // Nascondi il messaggio dopo la transizione
+            }, 4000); // Attendi 1 secondo prima di nascondere
+        });
+
+        startGameButton.addEventListener('transitionend', function (event) {
+            // Controlla se l'animazione finale è completa
+            if (event.target === startGameButton && startGameButton.classList.contains('active')) {
+                // Reindirizza a home.html
+                window.location.href = 'home.html';
+            }
+        });
+    </script>
 </body>
 
 </html>
