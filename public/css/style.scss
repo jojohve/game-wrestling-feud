@@ -1,13 +1,13 @@
 body {
     box-sizing: border-box;
     background-color: rgb(191, 185, 197);
-    background: url();
+    font-family: verdana;
 }
 
-.pre-game-conteiner {
+.content .pre-game-conteiner {
     justify-content: center;
     text-align: center;
-    padding: 100px;
+    padding: 50px;
 }
 
 @font-face {
@@ -15,7 +15,7 @@ body {
     src: url(/assets/fonts/OriginTech\ personal\ use.otf);
 }
 
-.pre-game-conteiner h1 {
+.content .pre-game-conteiner h1 {
     text-transform: uppercase;
     font-family: myfont1;
     font-size: 72px;
@@ -26,6 +26,241 @@ body {
     animation: font 7s step-end infinite,
         movement 8s step-end infinite,
         paths 5s step-end infinite;
+}
+
+.content .faq-contenitor {
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(245, 240, 240, 0.8);
+    padding: 5px 10px;
+    cursor: default;
+    border-radius: 2px;
+}
+
+.content .faq-contenitor h2 {
+    padding-bottom: 10px;
+}
+
+.content .faq-contenitor .faq {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 25px;
+}
+
+.content .faq-contenitor .faq .card {
+    background-color: rgba(204, 195, 195, 0.6);
+    border-radius: 20px;
+    padding: 10px 30px;
+    transition: transform 0.2s;
+}
+
+.content .faq-contenitor .faq .card p {
+    width: 350px;
+    letter-spacing: 0.9px;
+    line-height: 1.5rem;
+}
+
+.content .faq-contenitor .faq .card:hover {
+    transform: translateY(-5px);
+    cursor: text;
+}
+
+/* Stili per il background carousel */
+.background-carousel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    animation: backgroundCarousel 15s infinite;
+    z-index: -1;
+    filter: blur(5px) brightness(0.8);
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.content .pre-game-conteiner a {
+    margin-top: 150px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border: 3px outset #888;
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    color: #e2e2e2;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    overflow: hidden;
+
+    box-shadow: 0 0 10px rgb(0, 0, 0, 1);
+    font-size: 28px;
+    font-weight: bolder;
+    text-decoration: none;
+    background: linear-gradient(160deg, #666, #444);
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+
+    transition: 0.2s;
+}
+
+.content .pre-game-conteiner a:active {
+    border: 3px outset #ddd;
+    color: #fff;
+    background: linear-gradient(160deg, #666, #444);
+    text-shadow: 0px 0px 4px #ccc;
+    box-shadow: 0 0 10px #fff, 0 0 40px #fff, 0 0 80px #fff;
+    transition-delay: 1s;
+}
+
+.content .pre-game-conteiner a span {
+    position: absolute;
+    display: block;
+}
+
+.content .pre-game-conteiner a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #eee);
+}
+
+.content .pre-game-conteiner a:active span:nth-child(1) {
+    left: 100%;
+    transition: 1s;
+}
+
+.content .pre-game-conteiner a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #eee);
+}
+
+.content .pre-game-conteiner a:active span:nth-child(2) {
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+
+.content .pre-game-conteiner a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #eee);
+}
+
+.content .pre-game-conteiner a:active span:nth-child(3) {
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+
+.content .pre-game-conteiner a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #eee);
+}
+
+.content .pre-game-conteiner a:active span:nth-child(4) {
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
+
+@keyframes backgroundCarousel {
+    0% {
+        background-image: url('/assets/images/StockCake-Crowded wrestling match_1730286024.jpg');
+        opacity: 1;
+        /* Prima immagine visibile */
+        transform: scale(1);
+        /* Dimensione originale */
+    }
+
+    25% {
+        opacity: 1;
+        /* Mantiene la prima immagine */
+        transform: scale(1);
+        /* Dimensione originale */
+    }
+
+    30% {
+        opacity: 0;
+        /* Inizio della dissolvenza */
+        transform: scale(0.95);
+        /* Leggero ridimensionamento verso il basso */
+    }
+
+    33% {
+        background-image: url('/assets/images/StockCake-Wrestling Ring Spotlight_1730286086.jpg');
+        opacity: 0;
+        /* Prima immagine invisibile */
+        transform: scale(0.90);
+        /* Leggero ridimensionamento verso il basso */
+    }
+
+    58% {
+        opacity: 0;
+        /* Mantiene la seconda immagine invisibile */
+        transform: scale(0.95);
+        /* Leggero ridimensionamento verso il basso */
+    }
+
+    60% {
+        opacity: 1;
+        /* Inizio della seconda immagine */
+        transform: scale(1);
+        /* Dimensione originale */
+    }
+
+    91% {
+        opacity: 1;
+        /* Mantiene la seconda immagine */
+        transform: scale(1);
+        /* Dimensione originale */
+    }
+
+    94% {
+        opacity: 0;
+        /* Inizio della dissolvenza verso la terza immagine */
+        transform: scale(0.90);
+        /* Leggero ridimensionamento verso il basso */
+    }
+
+    100% {
+        background-image: url('/assets/images/StockCake-Intense wrestling match_1730286019.jpg');
+        opacity: 0;
+        /* Seconda immagine invisibile */
+        transform: scale(0.95);
+        /* Leggero ridimensionamento verso il basso */
+    }
+}
+
+@keyframes backgroundCarousel {
+    0% {
+        background-image: url('/assets/images/StockCake-Crowded wrestling match_1730286024.jpg');
+    }
+
+    33% {
+        background-image: url('/assets/images/StockCake-Wrestling Ring Spotlight_1730286086.jpg');
+    }
+
+    66% {
+        background-image: url('/assets/images/StockCake-Intense wrestling match_1730286019.jpg');
+    }
+
+    100% {
+        background-image: url('/assets/images/StockCake-Crowded wrestling match_1730286024.jpg');
+    }
 }
 
 @keyframes paths {
@@ -331,43 +566,4 @@ body {
         color: rgb(27, 41, 87);
         filter: blur(0);
     }
-}
-
-.pre-game-conteiner button {
-    border: none;
-    width: 200px;
-    height: 50px;
-    color: white;
-    background: rgb(39, 98, 207);
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-.pre-game-conteiner button:hover {
-    background: rgb(47, 118, 248);
-}
-
-.pre-game-conteiner button:active {
-    color: wheat;
-    background: rgb(30, 75, 156);
-}
-
-.faq-contenitor {
-    justify-content: center;
-    text-align: center;
-    background-color: rgb(245, 240, 240, 0.9);
-    padding: 30px 10px;
-    cursor: default;
-}
-
-.faq-contenitor .faq {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-}
-
-.faq-contenitor .faq .card {
-    background-color: rgba(204, 195, 195, 0.6);
-    border-radius: 20px;
-    padding: 10px 40px;
 }
