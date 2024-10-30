@@ -5,14 +5,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     flex-direction: column;
+    margin: 50px;
 }
 
 .character-grid {
     display: grid;
-    grid-template-columns: repeat(5, 150px); /* 5 colonne */
-    gap: 20px; /* Spaziatura tra le immagini */
+    grid-template-columns: repeat(5, 150px);
+    /* 5 colonne */
+    gap: 20px;
+    /* Spaziatura tra le immagini */
     margin: 20px;
 }
 
@@ -31,12 +33,17 @@ body {
 }
 
 .character.selected {
-    border: 3px solid gold; /* Bordo dorato per il personaggio selezionato */
-    transform: scale(1.1); /* Aumenta leggermente la dimensione */
+    border: 3px solid gold;
+    /* Bordo dorato per il personaggio selezionato */
+    transform: scale(1.1);
+    /* Aumenta leggermente la dimensione */
 }
 
 .grid-container {
     margin-bottom: 40px;
+    overflow-y: scroll;
+    max-height: 250px;
+    max-width: 1600px;
 }
 
 .confirm-button {
@@ -50,5 +57,6 @@ body {
 }
 
 .confirm-button:hover {
-    background-color: #FFD700; /* Colore leggermente più scuro al passaggio del mouse */
+    background-color: #FFD700;
+    /* Colore leggermente più scuro al passaggio del mouse */
 }

@@ -174,7 +174,7 @@ body {
 
 @keyframes backgroundCarousel {
   0% {
-    background-image: url("/assets/images/StockCake-Crowded wrestling match_1730286024.jpg");
+    background-image: url("../assets/images/StockCake-Crowded wrestling match_1730286024.jpg");
     opacity: 1;
     /* Prima immagine visibile */
     transform: scale(1);
@@ -193,7 +193,7 @@ body {
     /* Leggero ridimensionamento verso il basso */
   }
   33% {
-    background-image: url("/assets/images/StockCake-Wrestling Ring Spotlight_1730286086.jpg");
+    background-image: url("../assets/images/StockCake-Wrestling Ring Spotlight_1730286086.jpg");
     opacity: 0;
     /* Prima immagine invisibile */
     transform: scale(0.9);
@@ -224,7 +224,7 @@ body {
     /* Leggero ridimensionamento verso il basso */
   }
   100% {
-    background-image: url("/assets/images/StockCake-Intense wrestling match_1730286019.jpg");
+    background-image: url("../assets/images/StockCake-Intense wrestling match_1730286019.jpg");
     opacity: 0;
     /* Seconda immagine invisibile */
     transform: scale(0.95);
@@ -233,16 +233,16 @@ body {
 }
 @keyframes backgroundCarousel {
   0% {
-    background-image: url("/assets/images/StockCake-Crowded wrestling match_1730286024.jpg");
+    background-image: url("../assets/images/StockCake-Crowded wrestling match_1730286024.jpg");
   }
   33% {
-    background-image: url("/assets/images/StockCake-Wrestling Ring Spotlight_1730286086.jpg");
+    background-image: url("../assets/images/StockCake-Wrestling Ring Spotlight_1730286086.jpg");
   }
   66% {
-    background-image: url("/assets/images/StockCake-Intense wrestling match_1730286019.jpg");
+    background-image: url("../assets/images/StockCake-Intense wrestling match_1730286019.jpg");
   }
   100% {
-    background-image: url("/assets/images/StockCake-Crowded wrestling match_1730286024.jpg");
+    background-image: url("../assets/images/StockCake-Crowded wrestling match_1730286024.jpg");
   }
 }
 @keyframes paths {

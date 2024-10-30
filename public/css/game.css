@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: url(/assets/images/StockCake-Crowded\ wrestling\ match_1730286024.jpg);
+  background: url(../assets/images/StockCake-Crowded\ wrestling\ match_1730286024.jpg);
   background-size: cover;
   background-position: center;
 }
