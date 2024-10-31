@@ -1,5 +1,4 @@
-let turno = 1;
-let currentTurn = turno;
+let currentTurn = 0;
 let sceltaCorrente = '';
 
 let playerScore = 0; // Punti del giocatore
@@ -14,6 +13,7 @@ startMessageGame();
 console.log("La partita è iniziata");
 
 function game() {
+    currentTurn ++;
     loadScores();
     console.log("Ho caricato i punti");
     randomizzaTurno();
@@ -38,7 +38,7 @@ function loadScores() {
 function updateScoreDisplay() {
     console.log("Sto calcolando i punti..");
     // Aggiorna l'interfaccia utente con i punteggi attuali
-    document.getElementById('whatTurnItIs').innerText = `Turno: ${turno}`;
+    document.getElementById('whatTurnItIs').innerText = `Turno: ${currentTurn}`;
     document.getElementById('turnMessage').innerText = `Punteggio: ${playerCharacter} ${playerScore} - ${cpuCharacter} ${cpuScore}`;
     document.getElementById('storicoMatch').innerText = `Match vinti: ${playerCharacter}: ${playerGamePoints} - ${cpuCharacter}: ${cpuGamePoints}`;
 }
@@ -80,7 +80,7 @@ function eseguiScelta(choice) {
     sceltaCorrente = choice;
 
     // Salva la scelta del turno corrente
-    turnHistory.push({ turno, scelta: choice });
+    turnHistory.push({ currentTurn, scelta: choice });
     document.getElementById('turnChoice').innerText = `Hai scelto il ${choice}`;
 
     mostraVaiButton();
@@ -105,7 +105,7 @@ function vaiAllaScelta() {
 }
 
 function nextTurn() {
-    turno++;
+    game();
     console.log(`Turno incrementato: ${turno}`); // Debug
     sceltaCorrente = ''; // Reset della scelta corrente
     updateScoreDisplay(); // Aggiorna i punteggi sullo schermo
