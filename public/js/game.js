@@ -14,6 +14,7 @@ startMessageGame();
 console.log("La partita è iniziata");
 
 function iniziaTurno() {
+    currentTurn++; // Aggiorna il turno
     // Controlla se la rivalità è già finita
     if (playerGamePoints >= 2 || cpuGamePoints >= 2) {
         terminaRivalità(); // Se la rivalità è finita, gestisci la fine
@@ -39,17 +40,15 @@ function salvaDati() {
 }
 
 // Carica i punteggi dal localStorage
-function loadScores() {
+function caricaDati() {
     playerCharacter = localStorage.getItem('selectedPlayerCharacter');
     cpuCharacter = localStorage.getItem('selectedCpuCharacter');
-
     playerScore = parseInt(localStorage.getItem('playerScore')) || 0;
     cpuScore = parseInt(localStorage.getItem('cpuScore')) || 0;
     totalMatches = parseInt(localStorage.getItem('totalMatches')) || 0;
-    turnHistory = JSON.parse(localStorage.getItem('turnHistory')) || [];
-
     playerGamePoints = parseInt(localStorage.getItem('playerGamePoints')) || 0;
     cpuGamePoints = parseInt(localStorage.getItem('cpuGamePoints')) || 0;
+    currentTurn = parseInt(localStorage.getItem('currentTurn')) || 0;
     updateScoreDisplay();
 }
 
@@ -125,16 +124,7 @@ function vaiAllaScelta() {
     }
 }
 
-function fineGioco(result) {
-    if (result === 'vittoria') {
-        playerScore += 5; // Aggiungi 5 punti a playerScore
-        playerGamePoints++; // Aggiungi 1 punto a playerGamePoints
-    } else if (result === 'sconfitta') {
-        cpuScore += 5; // Aggiungi 5 punti a cpuScore in caso di sconfitta
-        cpuGamePoints++; // Aggiungi 1 punto a cpuGamePoints
-    }
-
-    totalMatches++;
+function fineGioco() {
     updateScoreDisplay();
     salvaDati();
 

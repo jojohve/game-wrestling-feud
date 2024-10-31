@@ -69,20 +69,26 @@ function match() {
     }
 
     function terminaMatch(vincitore) {
-        let result; // Variabile per il risultato
+        // Aggiorna i punteggi
+        aggiornaPunteggi(vincitore);
 
-        // Aggiorna i punteggi e storicizza il match
+        // Mostra il risultato finale
+        const risultatoMatch = vincitore === playerCharacter ? `${playerCharacter} vince il match!` : `${cpuCharacter} vince il match!`;
+        risultatoMatchElement.textContent = risultatoMatch; // Mostra il risultato
+
+        updateScoreDisplay(); // Aggiorna l'interfaccia utente
+    }
+
+    function aggiornaPunteggi(vincitore) {
         if (risultatoMatchElement) {
             if (vincitore === playerCharacter) {
                 playerScore += 5;
                 cpuScore -= 5;
                 playerGamePoints += 1;
-                result = 'vittoria';
             } else {
                 playerScore -= 5;
                 cpuScore += 5;
                 cpuGamePoints += 1;
-                result = 'sconfitta';
             }
         }
 
@@ -97,16 +103,11 @@ function match() {
         // Salva lo storico nel localStorage
         localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
         localStorage.setItem('totalMatches', totalMatches);
-
+        localStorage.setItem('currentTurn', currentTurn);
         localStorage.setItem('playerScore', playerScore);
         localStorage.setItem('cpuScore', cpuScore);
         localStorage.setItem('playerGamePoints', playerGamePoints);
         localStorage.setItem('cpuGamePoints', cpuGamePoints);
-
-        // Mostra il risultato finale
-        const risultatoMatch = vincitore === playerCharacter ? `${playerCharacter} vince il match!` : `${cpuCharacter} vince il match!`;
-        risultatoMatchElement.textContent = risultatoMatch; // Mostra il risultato
-
-        updateScoreDisplay(); // Aggiorna l'interfaccia utente
     }
+
 }
