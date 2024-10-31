@@ -57,6 +57,8 @@ function match() {
                 // Mostra il pulsante "Continua"
                 continuaButton.style.display = 'block'; // Mostra il pulsante
 
+                updateScoreDisplay(); // Aggiorna i punteggi sullo schermo
+
                 alert("Uno! Due! Tre! Finisce il match!"); // Mostra l'alert finale
                 terminaMatch(vincitore);
             }
@@ -67,16 +69,20 @@ function match() {
     }
 
     function terminaMatch(vincitore) {
+        let result; // Variabile per il risultato
+
         // Aggiorna i punteggi e storicizza il match
         if (risultatoMatchElement) {
             if (vincitore === playerCharacter) {
                 playerScore += 5;
                 cpuScore -= 5;
                 playerGamePoints += 1;
+                result = 'vittoria';
             } else {
                 playerScore -= 5;
                 cpuScore += 5;
                 cpuGamePoints += 1;
+                result = 'sconfitta';
             }
         }
 

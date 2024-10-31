@@ -8,16 +8,34 @@ let turnHistory = []; // Storico dei turni+
 
 let playerGamePoints = 0;
 let cpuGamePoints = 0;
+let result = "";
 
 startMessageGame();
 console.log("La partita è iniziata");
 
-function game() {
-    currentTurn ++;
-    loadScores();
-    console.log("Ho caricato i punti");
-    randomizzaTurno();
-    console.log("Reinderizzamento");
+function iniziaTurno() {
+    // Controlla se la rivalità è già finita
+    if (playerGamePoints >= 2 || cpuGamePoints >= 2) {
+        terminaRivalità(); // Se la rivalità è finita, gestisci la fine
+        return; // Esci dalla funzione
+    }
+    console.log("Nuovo turno avviato");
+
+    // Determina chi inizia il turno
+    if (Math.random() < 0.5) {
+        mostraScelteGiocatore();
+    } else {
+        eseguiSceltaCpu();
+    }
+}
+
+function salvaDati() {
+    localStorage.setItem('playerScore', playerScore);
+    localStorage.setItem('cpuScore', cpuScore);
+    localStorage.setItem('totalMatches', totalMatches);
+    localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
+    localStorage.setItem('playerGamePoints', playerGamePoints);
+    localStorage.setItem('cpuGamePoints', cpuGamePoints);
 }
 
 // Carica i punteggi dal localStorage
@@ -70,7 +88,7 @@ function eseguiSceltaCpu() {
     sceltaCorrente = sceltaRandom; // Salva la scelta nella variabile globale
 
     // Salva la scelta della CPU
-    turnHistory.push({ turno, scelta: sceltaRandom });
+    turnHistory.push({ currentTurn, scelta: sceltaRandom });
     document.getElementById('turnChoice').innerText = `La Cpu ha scelto il ${sceltaRandom}`;
 
     mostraVaiButton();
@@ -102,36 +120,41 @@ function vaiAllaScelta() {
     } else if (sceltaCorrente === 'rock-paper-scissor') {
         window.location.href = 'rock-paper-scissor.html';
     }
-}
-
-function nextTurn() {
-    game();
-    console.log(`Turno incrementato: ${currentTurn}`); // Debug
-    sceltaCorrente = ''; // Reset della scelta corrente
-    updateScoreDisplay(); // Aggiorna i punteggi sullo schermo
-
-    // Verifica se la rivalità è terminata prima di procedere
-    terminaRivalità();
-
-    // Inizia il nuovo turno
-    randomizzaTurno();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Controlla se le condizioni per il prossimo turno sono soddisfatte
     if (playerGamePoints < 2 && cpuGamePoints < 2) { // Esempio di condizione
         nextTurn(); // Chiama la funzione nextTurn()
     }
-});
+}
+
+function fineGioco(result) {
+    if (result === 'vittoria') {
+        playerScore += 5; // Aggiungi 5 punti a playerScore
+        playerGamePoints++; // Aggiungi 1 punto a playerGamePoints
+    } else if (result === 'sconfitta') {
+        cpuScore += 5; // Aggiungi 5 punti a cpuScore in caso di sconfitta
+        cpuGamePoints++; // Aggiungi 1 punto a cpuGamePoints
+    }
+
+    totalMatches++;
+    updateScoreDisplay();
+    salvaDati();
+
+    currentTurn++;  // Aggiorna il turno
+
+    // Controlla se il gioco è finito
+    if (playerGamePoints < 2 && cpuGamePoints < 2) {
+        iniziaTurno(); // Avvia il nuovo turno solo se il gioco non è finito
+    } else {
+        terminaRivalità(); // Controlla se la rivalità è terminata
+    }
+}
 
 function terminaRivalità() {
     if (playerGamePoints >= 2) {
         alert("Congratulazioni! Hai vinto la rivalità!");
-        resetRivalry();
     } else if (cpuGamePoints >= 2) {
         alert("La CPU ha vinto la rivalità!");
-        resetRivalry();
     }
+    resetRivalry();
 }
 
 function resetRivalry() {
