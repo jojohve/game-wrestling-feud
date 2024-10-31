@@ -1,4 +1,7 @@
-function match(selectedPlayerCharacter, selectedCpuCharacter) {
+function match() {
+    playerCharacter = localStorage.getItem('selectedPlayerCharacter');
+    cpuCharacter = localStorage.getItem('selectedCpuCharacter');
+
     totalMatches++;
     console.log(`Total Matches: ${totalMatches}`);
 
@@ -7,8 +10,7 @@ function match(selectedPlayerCharacter, selectedCpuCharacter) {
     probabilitaVittoriaGiocatore1 = Math.min(Math.max(probabilitaVittoriaGiocatore1, 0.1), 0.9);
 
     // Determinazione del vincitore
-    vincitore = Math.random() < probabilitaVittoriaGiocatore1 ? selectedPlayerCharacter : selectedCpuCharacter; // Usa i valori delle variabili
-    console.log(`Vincitore Determinato: ${vincitore}`);
+    vincitore = Math.random() < probabilitaVittoriaGiocatore1 ? playerCharacter : cpuCharacter; // Usa i valori delle variabili
 
     // Definisci totalFrasi in base a totalMatches
     let totalFrasi;
@@ -66,7 +68,7 @@ function match(selectedPlayerCharacter, selectedCpuCharacter) {
     function terminaMatch(vincitore) {
         // Aggiorna i punteggi e storicizza il match
         if (risultatoMatchElement) {
-            if (vincitore === selectedPlayerCharacter) {
+            if (vincitore === playerCharacter) {
                 playerScore += 5;
                 cpuScore -= 5;
                 playerGamePoints += 1;
@@ -89,7 +91,7 @@ function match(selectedPlayerCharacter, selectedCpuCharacter) {
         localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
 
         // Mostra il risultato finale
-        const risultatoMatch = vincitore === selectedPlayerCharacter ? `${selectedPlayerCharacter} vince il match!` : `${selectedCpuCharacter} vince il match!`;
+        const risultatoMatch = vincitore === playerCharacter ? `${playerCharacter} vince il match!` : `${CpuCharacter} vince il match!`;
         risultatoMatchElement.textContent = risultatoMatch; // Mostra il risultato
 
         updateScoreDisplay(); // Aggiorna l'interfaccia utente

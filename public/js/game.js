@@ -13,22 +13,18 @@ let cpuGamePoints = 0;
 startMessageGame();
 console.log("La partita è iniziata");
 
-function game(selectedPlayerCharacter, selectedCpuCharacter) {
-    console.log(`Selected Player Character: ${selectedPlayerCharacter}`);
-    console.log(`Selected CPU Character: ${selectedCpuCharacter}`);
-
+function game() {
     console.log(playerGamePoints, cpuGamePoints + " - match") //DEBUG
     loadScores();
     console.log("Ho caricato i punti");
     randomizzaTurno();
     console.log("Reinderizzamento");
-
 }
 
 // Carica i punteggi dal localStorage
 function loadScores() {
-    selectedPlayerCharacter = localStorage.getItem('selectedPlayerCharacter');
-    selectedCpuCharacter = localStorage.getItem('selectedCpuCharacter');
+    playerCharacter = localStorage.getItem('selectedPlayerCharacter');
+    cpuCharacter = localStorage.getItem('selectedCpuCharacter');
 
     playerScore = parseInt(localStorage.getItem('playerScore')) || 0;
     cpuScore = parseInt(localStorage.getItem('cpuScore')) || 0;
@@ -44,8 +40,8 @@ function updateScoreDisplay() {
     console.log("Sto calcolando i punti..");
     // Aggiorna l'interfaccia utente con i punteggi attuali
     document.getElementById('whatTurnItIs').innerText = `Turno: ${turno}`;
-    document.getElementById('turnMessage').innerText = `Punteggio: ${selectedPlayerCharacter} ${playerScore} - ${selectedCpuCharacter} ${cpuScore}`;
-    document.getElementById('storicoMatch').innerText = `Match vinti: ${selectedPlayerCharacter}: 0 - ${selectedCpuCharacter}: 0`;
+    document.getElementById('turnMessage').innerText = `Punteggio: ${playerCharacter} ${playerScore} - ${cpuCharacter} ${cpuScore}`;
+    document.getElementById('storicoMatch').innerText = `Match vinti: ${playerCharacter}: 0 - ${cpuCharacter}: 0`;
 }
 
 function randomizzaTurno() {
@@ -122,7 +118,7 @@ function nextTurn() {
     randomizzaTurno();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Controlla se le condizioni per il prossimo turno sono soddisfatte
     if (playerGamePoints < 2 && cpuGamePoints < 2) { // Esempio di condizione
         nextTurn(); // Chiama la funzione nextTurn()
