@@ -82,6 +82,8 @@ function mostraScelteGiocatore() {
 }
 
 function eseguiSceltaCpu() {
+    document.getElementById('azioniDiv').innerHTML = ''; // Nascondi le scelte del giocatore
+
     const scelteCpu = ['match', 'promo', 'memory', 'rock-paper-scissor'];
     const sceltaRandom = scelteCpu[Math.floor(Math.random() * scelteCpu.length)];
     sceltaCorrente = sceltaRandom; // Salva la scelta nella variabile globale
@@ -95,6 +97,7 @@ function eseguiSceltaCpu() {
 
 function eseguiScelta(choice) {
     sceltaCorrente = choice;
+    document.getElementById('azioniDiv').innerHTML = ''; // Nascondi le scelte del giocatore
 
     // Salva la scelta del turno corrente
     turnHistory.push({ currentTurn, scelta: choice });
