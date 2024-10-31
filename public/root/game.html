@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrestling Feud Generator! Game</title>
+    <link rel="stylesheet" href="../css/game.css">
+    <style>
+        .vai-button {
+            padding: 10px 20px;
+            background-color: gold;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .vai-button:hover {
+            background-color: #FFD700;
+            /* Colore leggermente più scuro al passaggio del mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="result">
+        <div class="character-display">
+            <p><strong style="color: blue;">(Player) </strong> <span id="playerCharacter"></span> <span
+                    style="color: rgba(0, 0, 0, 0.7);">vs</span> <strong style="color: red;">(CPU)</strong> <span
+                    id="cpuCharacter"></span></p>
+        </div>
+        <div class="turn" style="display: grid; font-size: smaller;">
+            <span id="whatTurnItIs"></span>
+            <span id="turnMessage"></span>
+            <span id="storicoMatch"></span>
+            <span id="turnChoice"></span>
+            <button id="vaiButton" style="display: none; height: 60px; margin: 125px;" onclick="vaiAllaScelta()"
+                class="vai-button">Vai</button>
+        </div>
+        <div id="azioniDiv"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            startMessageGame();
+            game();
+        });
+    </script>
+    <script src="../js/localStorage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/message.js"></script>
+</body>
+
+</html>

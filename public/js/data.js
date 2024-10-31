@@ -1,6 +1,6 @@
 // Variabili per memorizzare i personaggi selezionati
 let selectedPlayerCharacter = null; // Personaggio del giocatore
-let selectedCpuCharacter = null; // Personaggio della CPU
+let selectedCpuCharacter = null; // Personaggio della CPU   
 
 // Funzione per gestire la selezione dei personaggi
 function setupCharacterSelection(gridId, onSelect) {
@@ -22,6 +22,7 @@ function setupCharacterSelection(gridId, onSelect) {
     });
 }
 
+// Selezione casuale se si preme nella tendina della cpu
 function selectRandomPlayer() {
     const characters = Array.from(document.querySelectorAll('.character-grid .character')).filter(character => !["Casuale"].includes(character.dataset.name));
 
@@ -58,6 +59,7 @@ function selectRandomPlayer() {
     }
 }
 
+// Selezione casuale se si preme il tasto casuale nella tendina player
 function selectRandomCpu() {
     const characters = Array.from(document.querySelectorAll('.character-grid .character')).filter(character => !["CpuCasuale"].includes(character.dataset.name));
 
@@ -94,20 +96,19 @@ function selectRandomCpu() {
     }
 }
 
-// Configura la selezione dei personaggi per PLAYER e CPU
+// Configura la selezione dei personaggi per PLAYER e CPU per tutta la partita
 setupCharacterSelection('player-grid', (name) => {
     selectedPlayerCharacter = name; // Memorizza il personaggio selezionato dal giocatore
 });
-
 setupCharacterSelection('cpu-grid', (name) => {
     selectedCpuCharacter = name; // Memorizza il personaggio selezionato dalla CPU
 });
 
-// Aggiungi l'evento click per il personaggio "Casuale"
+// Aggiungi l'evento click per il personaggio "Casuale" quando si clicca
 document.querySelector('.character[data-name="Casuale"]').addEventListener('click', selectRandomPlayer);
 document.querySelector('.character[data-name="CpuCasuale"]').addEventListener('click', selectRandomCpu);
 
-// Aggiungi l'evento click per il pulsante di conferma del bottone in home.html
+// Aggiungi l'evento click per il pulsante di conferma del bottone in home.html per passare al gioco in game.html
 document.getElementById('confirm-button').addEventListener('click', () => {
     if (selectedPlayerCharacter && selectedCpuCharacter) {
         // Memorizza le selezioni in localStorage (opzionale)
@@ -115,8 +116,14 @@ document.getElementById('confirm-button').addEventListener('click', () => {
         localStorage.setItem('selectedCpuCharacter', selectedCpuCharacter);
 
         // Reindirizza a game.html
-        window.location.href = 'game.html';
+        window.location.href = 'root/game.html';
     } else {
         alert('Seleziona un personaggio per il Player e per la CPU!'); // Avviso se non sono selezionati entrambi i personaggi
     }
 });
+
+// Funzione per registrare un turno
+function recordTurn(turnResult) {
+    turnHistory.push(turnResult); // Aggiunge il risultato del turno allo storico
+    localStorage.setItem('turnHistory', JSON.stringify(turnHistory)); // Salva lo storico nel localStorage
+}
