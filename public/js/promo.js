@@ -1,0 +1,1 @@
+function promo(selectedPlayerCharacter, selectedCpuCharacter) {  }

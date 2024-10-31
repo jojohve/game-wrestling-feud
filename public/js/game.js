@@ -1,22 +1,28 @@
 let turno = 1;
 let currentTurn = turno;
-let sceltaCorrente = ''; 
+let sceltaCorrente = '';
 
 let playerScore = 0; // Punti del giocatore
 let cpuScore = 0; // Punti della CPU
-let totalMatches = 0; // Numero totale di match vinti
+let totalMatches = 0; // Numero totale di match
 let turnHistory = []; // Storico dei turni+
 
 let playerGamePoints = 0;
 let cpuGamePoints = 0;
 
-function game() {
-    console.log("La partita è iniziata");
+startMessageGame();
+console.log("La partita è iniziata");
+
+function game(selectedPlayerCharacter, selectedCpuCharacter) {
+    console.log(`Selected Player Character: ${selectedPlayerCharacter}`);
+    console.log(`Selected CPU Character: ${selectedCpuCharacter}`);
+
+    console.log(playerGamePoints, cpuGamePoints + " - match") //DEBUG
     loadScores();
     console.log("Ho caricato i punti");
     randomizzaTurno();
     console.log("Reinderizzamento");
-    eseguiScelta(choice);
+
 }
 
 // Carica i punteggi dal localStorage
@@ -76,7 +82,7 @@ function eseguiSceltaCpu() {
 }
 
 function eseguiScelta(choice) {
-    sceltaCorrente = choice; 
+    sceltaCorrente = choice;
 
     // Salva la scelta del turno corrente
     turnHistory.push({ turno, scelta: choice });
@@ -92,18 +98,48 @@ function mostraVaiButton() {
 
 function vaiAllaScelta() {
     // Transizione alla pagina scelta dalla CPU
-    if (sceltaCorrente  === 'match') {
+    if (sceltaCorrente === 'match') {
         window.location.href = 'match.html';
-    } else if (sceltaCorrente  === 'promo') {
+    } else if (sceltaCorrente === 'promo') {
         window.location.href = 'promo.html';
-    } else if (sceltaCorrente  === 'memory') {
+    } else if (sceltaCorrente === 'memory') {
         window.location.href = 'memory.html';
-    } else if (sceltaCorrente  === 'rock-paper-scissor') {
+    } else if (sceltaCorrente === 'rock-paper-scissor') {
         window.location.href = 'rock-paper-scissor.html';
     }
 }
 
-function resetGame() {
+function nextTurn() {
+    turno++;
+    console.log(`Turno incrementato: ${turno}`); // Debug
+    sceltaCorrente = ''; // Reset della scelta corrente
+    updateScoreDisplay(); // Aggiorna i punteggi sullo schermo
+
+    // Verifica se la rivalità è terminata prima di procedere
+    terminaRivalità();
+
+    // Inizia il nuovo turno
+    randomizzaTurno();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Controlla se le condizioni per il prossimo turno sono soddisfatte
+    if (playerGamePoints < 2 && cpuGamePoints < 2) { // Esempio di condizione
+        nextTurn(); // Chiama la funzione nextTurn()
+    }
+});
+
+function terminaRivalità() {
+    if (playerGamePoints >= 2) {
+        alert("Congratulazioni! Hai vinto la rivalità!");
+        resetRivalry();
+    } else if (cpuGamePoints >= 2) {
+        alert("La CPU ha vinto la rivalità!");
+        resetRivalry();
+    }
+}
+
+function resetRivalry() {
     // Resetta i punteggi e torna alla schermata principale
     playerScore = 0;
     cpuScore = 0;
@@ -114,4 +150,10 @@ function resetGame() {
 
     playerGamePoints = 0;
     cpuGamePoints = 0;
+
+    console.log("Rivalità resettata. Punteggi: ", playerGamePoints, cpuGamePoints);
+}
+
+function continua() {
+    window.location.href = 'game.html'; // Inserisci il percorso corretto
 }
