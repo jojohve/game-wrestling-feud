@@ -106,7 +106,7 @@ function vaiAllaScelta() {
 
 function nextTurn() {
     game();
-    console.log(`Turno incrementato: ${turno}`); // Debug
+    console.log(`Turno incrementato: ${currentTurn}`); // Debug
     sceltaCorrente = ''; // Reset della scelta corrente
     updateScoreDisplay(); // Aggiorna i punteggi sullo schermo
 
@@ -139,7 +139,7 @@ function resetRivalry() {
     playerScore = 0;
     cpuScore = 0;
 
-    turno = 1;
+    currentTurn = 0;
     totalMatches = 0;
     turnHistory = [];
 
