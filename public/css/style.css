@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   box-sizing: border-box;
   background-color: rgb(191, 185, 197);
@@ -327,5 +328,111 @@ body {
     font-weight: 700;
     color: rgb(27, 41, 87);
     filter: blur(0);
+  }
+}
+@media screen and (max-width: 500px) {
+  /* Stile base per la pagina */
+  body {
+    box-sizing: border-box;
+    background-color: rgb(191, 185, 197);
+    font-family: verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  /* Stili del contenuto */
+  .content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    text-align: center;
+  }
+  /* Stile del contenitore pre-game */
+  .content .pre-game-conteiner {
+    justify-content: center;
+    padding: 20px;
+  }
+  /* Font personalizzato */
+  @font-face {
+    font-family: myfont1;
+    src: url(/assets/fonts/OriginTech\ personal\ use.otf);
+  }
+  .content .pre-game-conteiner h1 {
+    text-transform: uppercase;
+    font-family: myfont1;
+    font-size: 48px; /* Dimensione ridotta per mobile */
+    color: rgb(27, 41, 87);
+    text-shadow: 5px 5px 0 black;
+    cursor: default;
+    filter: drop-shadow(0 1px 3px);
+    animation: font 7s step-end infinite, movement 8s step-end infinite, paths 5s step-end infinite;
+  }
+  /* Contenitore FAQ */
+  .content .faq-contenitor {
+    background-color: rgba(245, 240, 240, 0.8);
+    padding: 10px;
+    border-radius: 2px;
+  }
+  /* Singola FAQ */
+  .content .faq-contenitor .faq {
+    flex-direction: column; /* Disposizione a colonna per mobile */
+    margin: 15px;
+  }
+  /* Singola card della FAQ */
+  .content .faq-contenitor .faq .card {
+    background-color: rgba(204, 195, 195, 0.6);
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    margin: 10px 0;
+  }
+  .content .faq-contenitor .faq .card p {
+    width: 100%; /* Adatta la larghezza per mobile */
+    letter-spacing: 0.9px;
+    line-height: 1.5rem;
+  }
+  /* Sfondo del carousel */
+  .background-carousel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    animation: backgroundCarousel 15s infinite;
+    z-index: -1;
+    filter: blur(5px) brightness(0.8);
+  }
+  /* Link in pre-game */
+  .content .pre-game-conteiner a {
+    margin: 50px 0;
+    border-radius: 12px;
+    border: 2px outset #888;
+    padding: 10px 20px;
+    color: #e2e2e2;
+    text-transform: uppercase;
+    font-size: 20px; /* Dimensione ridotta per mobile */
+    font-weight: bolder;
+    text-decoration: none;
+    background: linear-gradient(160deg, #666, #444);
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+    transition: 0.2s;
+  }
+  /* Media query per schermi più piccoli */
+}
+@media screen and (max-width: 500px) and (max-width: 768px) {
+  .content .pre-game-conteiner h1 {
+    font-size: 32px; /* Riduzione del titolo per mobile */
+  }
+  .content .faq-contenitor .faq {
+    flex-direction: column; /* Disposizione a colonna */
+  }
+  .content .faq-contenitor .faq .card p {
+    width: auto; /* Adattamento automatico per mobile */
+  }
+  .content .pre-game-conteiner a {
+    font-size: 18px; /* Riduzione dei link per mobile */
+    padding: 8px 16px;
+    margin: 30px 0;
   }
 }/*# sourceMappingURL=style.css.map */

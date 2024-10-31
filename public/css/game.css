@@ -31,4 +31,22 @@ h1 {
   border-radius: 8px;
   text-align: center;
   font-size: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    background-size: contain;
+    padding: 10px;
+  }
+  h1 {
+    font-size: 24px; /* Ridimensionamento del titolo */
+  }
+  .result {
+    padding: 10px;
+    font-size: 20px;
+  }
+  .character-display {
+    font-size: 16px;
+    padding: 8px;
+  }
 }/*# sourceMappingURL=game.css.map */
