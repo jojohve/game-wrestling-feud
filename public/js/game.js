@@ -64,7 +64,7 @@ function randomizzaTurno() {
     console.log("Sto lanciando la moneta..");
     // 50% di probabilità per il giocatore di iniziare
     if (Math.random() < 0.5) {
-        mostraScelteGiocatore();
+        eseguiScelta();
     } else {
         eseguiSceltaCpu();
     }
@@ -82,8 +82,8 @@ function mostraScelteGiocatore() {
 }
 
 function eseguiSceltaCpu() {
-    document.getElementById('azioniDiv').innerHTML = ''; // Nascondi le scelte del giocatore
-
+    document.getElementById('azioniDiv').innerHTML = ''; 
+    
     const scelteCpu = ['match', 'promo', 'memory', 'rock-paper-scissor'];
     const sceltaRandom = scelteCpu[Math.floor(Math.random() * scelteCpu.length)];
     sceltaCorrente = sceltaRandom; // Salva la scelta nella variabile globale
