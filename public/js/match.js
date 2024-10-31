@@ -1,6 +1,7 @@
 function match() {
     playerCharacter = localStorage.getItem('selectedPlayerCharacter');
     cpuCharacter = localStorage.getItem('selectedCpuCharacter');
+    updateScoreDisplay(); // Aggiorna l'interfaccia utente
 
     totalMatches++;
     console.log(`Total Matches: ${totalMatches}`);
@@ -89,9 +90,15 @@ function match() {
 
         // Salva lo storico nel localStorage
         localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
+        localStorage.setItem('totalMatches', totalMatches);
+
+        localStorage.setItem('playerScore', playerScore);
+        localStorage.setItem('cpuScore', cpuScore);
+        localStorage.setItem('playerGamePoints', playerGamePoints);
+        localStorage.setItem('cpuGamePoints', cpuGamePoints);
 
         // Mostra il risultato finale
-        const risultatoMatch = vincitore === playerCharacter ? `${playerCharacter} vince il match!` : `${CpuCharacter} vince il match!`;
+        const risultatoMatch = vincitore === playerCharacter ? `${playerCharacter} vince il match!` : `${cpuCharacter} vince il match!`;
         risultatoMatchElement.textContent = risultatoMatch; // Mostra il risultato
 
         updateScoreDisplay(); // Aggiorna l'interfaccia utente

@@ -14,7 +14,6 @@ startMessageGame();
 console.log("La partita è iniziata");
 
 function game() {
-    console.log(playerGamePoints, cpuGamePoints + " - match") //DEBUG
     loadScores();
     console.log("Ho caricato i punti");
     randomizzaTurno();
@@ -41,7 +40,7 @@ function updateScoreDisplay() {
     // Aggiorna l'interfaccia utente con i punteggi attuali
     document.getElementById('whatTurnItIs').innerText = `Turno: ${turno}`;
     document.getElementById('turnMessage').innerText = `Punteggio: ${playerCharacter} ${playerScore} - ${cpuCharacter} ${cpuScore}`;
-    document.getElementById('storicoMatch').innerText = `Match vinti: ${playerCharacter}: 0 - ${cpuCharacter}: 0`;
+    document.getElementById('storicoMatch').innerText = `Match vinti: ${playerCharacter}: ${playerGamePoints} - ${cpuCharacter}: ${cpuGamePoints}`;
 }
 
 function randomizzaTurno() {
