@@ -46,7 +46,16 @@
         <div class="promo">
             <span id="whatTurnItIs"></span>
             <div id="turnMessage"></div>
+            <div id="storicoMatch"></div>
 
+            <div class="choices">
+                <h3>Scegli</h3>
+                <button id="choice1" onclick="handleResponse(1)"> </button>
+                <button id="choice2" onclick="handleResponse(2)"> </button>
+                <button id="choice3" onclick="handleResponse(3)"> </button>
+            </div>
+        
+            <div class="promoBattle" id="promoBattle"></div>        
         </div>
     </div>
 
@@ -59,8 +68,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             caricaDati();
-            game();
-            promo();
+            promoBattle();
         });
     </script>
 </body>
