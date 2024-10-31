@@ -60,3 +60,68 @@ body {
     background-color: #FFD700;
     /* Colore leggermente più scuro al passaggio del mouse */
 }
+
+@media screen and (max-width: 500px){
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #222;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 20px;
+    }
+    
+    .character-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 colonne per il layout mobile */
+        gap: 10px;
+        /* Riduce la spaziatura tra le immagini */
+        margin: 10px;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .character {
+        position: relative;
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        transition: border 0.3s ease, transform 0.3s ease;
+    }
+    
+    .character img {
+        width: 100%;
+        border-radius: 10px;
+        display: block;
+    }
+    
+    .character.selected {
+        border: 2px solid gold;
+        transform: scale(1.05);
+    }
+    
+    .grid-container {
+        margin-bottom: 20px;
+        overflow-y: auto;
+        max-height: 300px;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .confirm-button {
+        padding: 10px 15px;
+        background-color: gold;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .confirm-button:hover {
+        background-color: #FFD700;
+    }
+}
