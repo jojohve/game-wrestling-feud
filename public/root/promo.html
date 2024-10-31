@@ -5,10 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wrestling Feud Generator! Promo</title>
+    <link rel="stylesheet" href="../css/game.css">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../assets/images/roman-reigns-jey-uso.jpg') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px) brightness(0.8);
+            z-index: -1;
+            /* Metti il div sotto al contenuto */
+        }
+
+        .promo {
+            position: relative;
+            z-index: 1;
+            /* Metti il contenuto sopra al div di background */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="background"></div>
+    <div class="result">
+        <div class="character-display">
+            <p><strong style="color: blue;">(Player) </strong> <span id="playerCharacter"></span> <span
+                    style="color: rgba(0, 0, 0, 0.7);">vs</span> <strong style="color: red;">(CPU)</strong> <span
+                    id="cpuCharacter"></span></p>
+        </div>
+        <div class="promo">
 
+        </div>
+    </div>
+
+    <script src="../js/localStorage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/message.js"></script>
 </body>
 
 </html>
