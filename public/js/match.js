@@ -91,6 +91,7 @@ function match() {
                 cpuGamePoints += 1;
             }
         }
+        salvaDati();
 
         // Aggiungere il match allo storico
         turnHistory.push({
@@ -99,15 +100,5 @@ function match() {
             cpuScore: cpuScore,
             vincitore: vincitore // Nome del vincitore
         });
-
-        // Salva lo storico nel localStorage
-        localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
-        localStorage.setItem('totalMatches', totalMatches);
-        localStorage.setItem('currentTurn', currentTurn);
-        localStorage.setItem('playerScore', playerScore);
-        localStorage.setItem('cpuScore', cpuScore);
-        localStorage.setItem('playerGamePoints', playerGamePoints);
-        localStorage.setItem('cpuGamePoints', cpuGamePoints);
     }
-
 }

@@ -161,65 +161,124 @@ const categories = {
 let wrestler1Score = 0;
 let wrestler2Score = 0;
 
-function promoBattle() {
-      function promo() {
-            const randomChoices = [];
+// Funzione per generare frasi casuali per ogni categoria
+function generateRandomPhrases() {
+      const randomChoices = [];
 
-            for (const category in categories) {
-                  const phrases = categories[category].phrases;
+      for (const category in categories) {
+            const phrases = categories[category].phrases;
+
+            if (phrases && phrases.length > 0) {
                   const randomIndex = Math.floor(Math.random() * phrases.length);
                   randomChoices.push(phrases[randomIndex]);
-            }
-
-            // Popola le frasi nel DOM
-            document.getElementById("choice1").innerText = randomChoices[0];
-            document.getElementById("choice2").innerText = randomChoices[1];
-            document.getElementById("choice3").innerText = randomChoices[2];
-      }
-
-      promo(); // Assicurati di chiamare la funzione promo per generare le frasi
-
-      function handleResponse(choice) {
-            const userPhrase = document.getElementById(`choice${choice}`).innerText;
-            let userScore = 0;
-
-            for (const category in categories) {
-                  if (categories[category].phrases.includes(userPhrase)) {
-                        userScore = categories[category].score;
-                        break;
-                  }
-            }
-
-            // Aggiorna i punteggi
-            if (userScore === 1) {
-                  wrestler1Score++;
-                  alert("Wrestler 1 guadagna un punto!");
-            } else if (userScore === 2) {
-                  wrestler2Score++;
-                  alert("Wrestler 2 guadagna un punto!");
-            } else if (userScore === 3) {
-                  wrestler1Score++;
-                  wrestler2Score++;
-                  alert("Entrambi i wrestler guadagnano un punto!");
-            }
-
-            // Stampa i punteggi
-            console.log(`Punteggio Wrestler 1: ${wrestler1Score}`);
-            console.log(`Punteggio Wrestler 2: ${wrestler2Score}`);
-
-            // Controlla chi ha vinto
-            if (wrestler1Score >= 5) {
-                  alert("Wrestler 1 ha vinto!");
-                  resetGame();
-            } else if (wrestler2Score >= 5) {
-                  alert("Wrestler 2 ha vinto!");
-                  resetGame();
+            } else {
+                  console.warn(`Nessuna frase trovata per la categoria: ${category}`);
             }
       }
+      return randomChoices;
+}
 
-      document.getElementById("choice1").onclick = () => handleResponse(1);
-      document.getElementById("choice2").onclick = () => handleResponse(2);
-      document.getElementById("choice3").onclick = () => handleResponse(3);
+// Visualizza le frasi nel DOM
+function displayPhrases() {
+      const randomChoices = generateRandomPhrases();
+      randomChoices.forEach((phrase, index) => {
+            document.getElementById(`choice${index + 1}`).innerText = phrase;
+      });
+}
+
+// Gestisce la risposta dell'utente e aggiorna i punteggi
+function handleResponse(choice) {
+      displayPhrases();
+      const userPhrase = document.getElementById(`choice${choice}`).innerText;
+      let userScorePromo = getPhraseScore(userPhrase);
+
+      wrestler1Score += userScorePromo;
+
+      const cpuChoice = generateCpuPhrase();
+      const cpuScorePromo = getPhraseScore(cpuChoice);
+
+      wrestler2Score += cpuScorePromo;
+
+      const scoreDisplay = document.getElementById('scoreDisplay');
+      scoreDisplay.textContent = `Punteggio Promo: ${playerCharacter}: ${wrestler1Score}, ${cpuCharacter}: ${wrestler2Score}`;
+
+      updateBattleGround(playerCharacter, userPhrase, cpuCharacter, cpuChoice);
+      checkForWinner();
+}
+
+// Funzione per selezionare una frase casuale della CPU
+function generateCpuPhrase() {
+      const allPhrases = Object.values(categories).flatMap(category => category.phrases);
+      const randomIndex = Math.floor(Math.random() * allPhrases.length);
+      return allPhrases[randomIndex];
+}
+
+// Funzione per ottenere il punteggio di una frase
+function getPhraseScore(phrase) {
+      for (const category of Object.values(categories)) {
+            if (category.phrases.includes(phrase)) {
+                  return category.score;
+            }
+      }
+      return 0;
+}
+
+// Aggiorna il campo di battaglia con le frasi
+function updateBattleGround(playerCharacter, userPhrase, cpuCharacter, cpuResponse) {
+      const battleElement = document.getElementById("promoBattle");
+      battleElement.innerHTML += `<p><strong>${playerCharacter}:</strong> ${userPhrase}</p>`;
+      battleElement.innerHTML += `<p><strong>${cpuCharacter}:</strong> ${cpuResponse}</p>`;
+      scrollToBottom("promoBattle");
+}
+
+// Verifica se c’è un vincitore
+function checkForWinner() {
+      if (wrestler1Score >= 15 || wrestler2Score >= 15) {
+            const winner = wrestler1Score >= 15 ? playerCharacter : cpuCharacter;
+            alert(`${winner} ha vinto il promo!`);
+
+            // Mostra il pulsante "Continua"
+            continuaButton.style.display = 'block'; // Mostra il pulsante
+
+            aggiornaPunteggi(winner);
+
+            disableChoices(); // Disabilita le scelte quando c'è un vincitore
+            resetGame();
+      }
+}
+
+function scrollToBottom(elementId) {
+      const element = document.getElementById(elementId);
+      if (element) {
+            element.scrollTop = element.scrollHeight;
+      }
+}
+
+function aggiornaPunteggi(winner) {
+      if (winner) {
+            if (winner === playerCharacter) {
+                  playerScore += 10;
+            } else {
+                  cpuScore += 10;
+            }
+      }
+      salvaDati();
+
+      turnMessage.innerHTML = `Punteggio: ${playerCharacter}: ${playerScore}, ${cpuCharacter}: ${cpuScore}`;
+}
+
+// Resetta i punteggi e aggiorna l'interfaccia
+function resetGame() {
+      wrestler1Score = 0;
+      wrestler2Score = 0;
+      displayPhrases();
+}
+
+// Inizializza il gioco
+function promoBattle() {
+      wrestler1Score = 0;
+      wrestler2Score = 0;
+      displayPhrases(); // Visualizza le frasi iniziali
 
       // Salva lo storico nel localStorage
       localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
@@ -231,8 +290,15 @@ function promoBattle() {
       localStorage.setItem('cpuGamePoints', cpuGamePoints);
 }
 
-function resetGame() {
-      wrestler1Score = 0;
-      wrestler2Score = 0;
-      promoBattle(); // Riavvia la battaglia promozionale
+
+function disableChoices() {
+      for (let i = 1; i <= 3; i++) {
+            const choiceElement = document.getElementById(`choice${i}`);
+            if (choiceElement) {
+                  choiceElement.style.pointerEvents = 'none'; // Disabilita gli eventi di puntamento
+                  choiceElement.style.opacity = '0.5'; // Rendi visivamente non selezionabile
+            }
+      }
 }
+
+promoBattle();

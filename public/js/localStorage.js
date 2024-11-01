@@ -9,4 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(`Personaggio del giocatore: ${playerCharacter}`);
     console.log(`Personaggio della CPU: ${cpuCharacter}`);
+
+    caricaDati();
+    console.log(localStorage);
 });

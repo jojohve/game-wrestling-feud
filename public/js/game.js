@@ -31,24 +31,48 @@ function iniziaTurno() {
 }
 
 function salvaDati() {
+    localStorage.setItem('playerCharacter', playerCharacter);
+    localStorage.setItem('cpuCharacter', cpuCharacter);
+
     localStorage.setItem('playerScore', playerScore);
     localStorage.setItem('cpuScore', cpuScore);
     localStorage.setItem('totalMatches', totalMatches);
-    localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
+
+    localStorage.setItem('turnHistory', JSON.stringify(turnHistory));   
     localStorage.setItem('playerGamePoints', playerGamePoints);
     localStorage.setItem('cpuGamePoints', cpuGamePoints);
+
+    localStorage.setItem('currentTurn', currentTurn);
+    localStorage.setItem('result', result);
 }
 
 // Carica i punteggi dal localStorage
 function caricaDati() {
-    playerCharacter = localStorage.getItem('selectedPlayerCharacter');
-    cpuCharacter = localStorage.getItem('selectedCpuCharacter');
+    playerCharacter = localStorage.getItem('selectedPlayerCharacter') || ''; // Valore di default
+    cpuCharacter = localStorage.getItem('selectedCpuCharacter') || ''; // Valore di default
+
     playerScore = parseInt(localStorage.getItem('playerScore')) || 0;
     cpuScore = parseInt(localStorage.getItem('cpuScore')) || 0;
     totalMatches = parseInt(localStorage.getItem('totalMatches')) || 0;
     playerGamePoints = parseInt(localStorage.getItem('playerGamePoints')) || 0;
     cpuGamePoints = parseInt(localStorage.getItem('cpuGamePoints')) || 0;
     currentTurn = parseInt(localStorage.getItem('currentTurn')) || 0;
+    result = parseInt(localStorage.getItem('result')) || 0;
+
+    // Assicurati che turnHistory sia un array anche se non ci sono dati salvati
+    turnHistory = JSON.parse(localStorage.getItem('turnHistory')) || [];
+
+    console.log('Dati caricati:', {
+        playerScore,
+        cpuScore,
+        totalMatches,
+        playerGamePoints,
+        cpuGamePoints,
+        currentTurn,
+        result,
+        turnHistory
+    });
+
     updateScoreDisplay();
 }
 
@@ -98,7 +122,7 @@ function eseguiSceltaCpu() {
 function eseguiScelta(choice) {
     sceltaCorrente = choice;
     document.getElementById('azioniDiv').style.display = 'none';
-    
+
     // Salva la scelta del turno corrente
     turnHistory.push({ currentTurn, scelta: choice });
     document.getElementById('turnChoice').innerText = `Hai scelto il ${choice}`;
@@ -131,8 +155,6 @@ function fineGioco() {
     updateScoreDisplay();
     salvaDati();
 
-    currentTurn++;  // Aggiorna il turno
-
     // Controlla se il gioco è finito
     if (playerGamePoints < 2 && cpuGamePoints < 2) {
         iniziaTurno(); // Avvia il nuovo turno solo se il gioco non è finito
@@ -162,7 +184,10 @@ function resetRivalry() {
     playerGamePoints = 0;
     cpuGamePoints = 0;
 
+    result = "";
+
     console.log("Rivalità resettata. Punteggi: ", playerGamePoints, cpuGamePoints);
+    window.location.href = '../home.html';
 }
 
 function continua() {
