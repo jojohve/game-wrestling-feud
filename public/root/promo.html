@@ -9,6 +9,8 @@
     <style>
         body {
             margin: 0;
+            font-family: Arial, sans-serif;
+            /* Font per una migliore leggibilità */
         }
 
         .background {
@@ -21,15 +23,15 @@
             background-size: cover;
             filter: blur(5px) brightness(0.8);
             z-index: -1;
-            /* Metti il div sotto al contenuto */
         }
 
-        .continuaButton {
+        #continuaButton {
             margin-top: 10px;
             width: 100%;
-            padding: 10px 20px;
-            font-size: 1em;
-            /* Dimensione del font */
+            padding: 8px 15px;
+            /* Dimensione del padding ridotto */
+            font-size: 0.9em;
+            /* Font più piccolo */
             background-color: #007BFF;
             /* Colore blu */
             border: none;
@@ -37,13 +39,16 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            /* Transizione per l'effetto hover */
+        }
+
+        #continuaButton:hover {
+            background-color: #0056b3;
+            /* Colore blu scuro al passaggio del mouse */
         }
 
         .promo {
             position: relative;
             z-index: 1;
-            /* Metti il contenuto sopra al div di background */
             padding: 20px;
             text-align: center;
         }
@@ -55,8 +60,42 @@
             background-color: #2e2e42;
             padding: 10px;
             border-radius: 10px;
+            font-size: smaller;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             transition: box-shadow 0.3s ease;
+        }
+
+        .choices {
+            margin-top: 20px;
+            /* Spazio sopra le scelte */
+        }
+
+        .choices button {
+            padding: 8px 12px;
+            /* Dimensione del padding ridotto per i bottoni delle scelte */
+            font-size: 0.8em;
+            /* Font più piccolo per i bottoni */
+            background-color: #28a745;
+            /* Colore verde */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin: 5px;
+            /* Spaziatura tra i bottoni */
+            transition: background-color 0.3s ease;
+        }
+
+        .choices button:hover {
+            background-color: #218838;
+            /* Colore verde scuro al passaggio del mouse */
+        }
+
+        /* Media query per schermi più piccoli */
+        @media (max-width: 600px) {
+            .promoBattle {
+                font-size: small;
+            }
         }
     </style>
 </head>
@@ -78,9 +117,9 @@
 
             <div class="choices">
                 <h3>Scegli</h3>
-                <button id="choice1" onclick="handleResponse(1)"> </button>
-                <button id="choice2" onclick="handleResponse(2)"> </button>
-                <button id="choice3" onclick="handleResponse(3)"> </button>
+                <button id="choice1" onclick="handleResponse(1)">Scelta 1</button>
+                <button id="choice2" onclick="handleResponse(2)">Scelta 2</button>
+                <button id="choice3" onclick="handleResponse(3)">Scelta 3</button>
             </div>
 
             <div class="promoBattle" id="promoBattle"></div>

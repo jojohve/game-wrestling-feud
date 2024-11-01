@@ -24,7 +24,7 @@ function match() {
     } else if (totalMatches === 3) {
         totalFrasi = Math.floor(Math.random() * 4) + 4; // Da 4 a 7
     } else {
-        totalFrasi = 3; // Imposta un valore predefinito se totalMatches è maggiore di 3
+        totalFrasi = 1; // Imposta un valore predefinito se totalMatches è maggiore di 3
     }
 
     const fraseMatch = document.getElementById('fraseMatch');

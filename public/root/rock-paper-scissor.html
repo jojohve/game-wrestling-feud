@@ -9,6 +9,7 @@
     <style>
         body {
             margin: 0;
+            font-family: Arial, sans-serif; /* Added a default font */
         }
 
         .background {
@@ -20,30 +21,25 @@
             background: url('../assets/images/scissoring-day.jpg') no-repeat center center fixed;
             background-size: cover;
             filter: blur(5px) brightness(0.8);
-            z-index: -1;
-            /* Metti il div sotto al contenuto */
+            z-index: -1; /* Place the background behind the content */
         }
 
-        .continuaButton {
+        #continuaButton {
             margin-top: 10px;
             width: 100%;
             padding: 10px 20px;
             font-size: 1em;
-            /* Dimensione del font */
-            background-color: #007BFF;
-            /* Colore blu */
+            background-color: #007BFF; /* Blue color */
             border: none;
             border-radius: 5px;
             color: white;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            /* Transizione per l'effetto hover */
+            transition: background-color 0.3s ease; /* Transition for hover effect */
         }
 
         .rps {
             position: relative;
-            z-index: 1;
-            /* Metti il contenuto sopra al div di background */
+            z-index: 1; /* Place content above the background */
             padding: 20px;
             text-align: center;
         }
@@ -60,7 +56,7 @@
             border-radius: 250px;
             background-color: rgb(64, 100, 175);
             cursor: pointer;
-            transition: background-color0.5 ease;
+            transition: background-color 0.5s ease; /* Corrected transition syntax */
             border: none;
         }
 
@@ -92,16 +88,50 @@
             color: rgb(255, 55, 55);
         }
 
-        /* Media query per schermi più piccoli */
+        /* Media query for smaller screens */
         @media (max-width: 600px) {
             .choices {
-                display: flex;
-                /* Attiva il layout flex */
-                justify-content: center;
-                /* Centra i pulsanti orizzontalmente */
-                width: 100%;
-                margin-top: 30px;
-                margin-bottom: 30px;
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: center; /* Center buttons */
+                margin: 20px 0; /* Reduced margin for a more compact layout */
+            }
+
+            .choices button {
+                font-size: 2rem; /* Smaller button size for mobile */
+                margin: 10px 10px; /* Margin between buttons */
+                padding: 10px;
+            }
+
+            #playerDisplay,
+            #cpuDisplay {
+                font-size: 2rem; /* Smaller font size for player and CPU display */
+            }
+
+            #resultDisplay {
+                font-size: 2rem; /* Adjusted size for result display */
+            }
+
+            .scoreDisplay {
+                font-size: 1.5rem; /* Smaller score display for mobile */
+            }
+
+            #continuaButton {
+                font-size: 1.2em; /* Larger font size for continue button */
+            }
+        }
+
+        /* Additional media query for very small screens */
+        @media (max-width: 400px) {
+            .choices button {
+                font-size: 2rem; /* Even smaller font size for very small screens */
+            }
+
+            #resultDisplay {
+                font-size: 1.2rem; /* Adjust size for very small screens */
+            }
+
+            .scoreDisplay {
+                font-size: 1.2rem; /* Smaller score display for very small screens */
             }
         }
     </style>
@@ -121,9 +151,9 @@
             <div id="storicoMatch"></div>
 
             <div class="choices">
-                <button onclick="playGame('rock')">👊</button>
-                <button onclick="playGame('paper')">🤚</button>
-                <button onclick="playGame('scissors')">✌️</button>
+                <button onclick="playGame('sasso')">👊</button>
+                <button onclick="playGame('carta')">🤚</button>
+                <button onclick="playGame('forbici')">✌️</button>
             </div>
 
             <div id="playerDisplay">Player: </div>

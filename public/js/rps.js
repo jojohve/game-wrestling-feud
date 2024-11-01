@@ -1,4 +1,4 @@
-const choices = ["rock", "paper", "scissors"];
+const choices = ["sasso", "carta", "forbici"];
 const playerDisplay = document.getElementById("playerDisplay");
 const cpuDisplay = document.getElementById("cpuDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
@@ -20,14 +20,14 @@ function playGame(playerChoice) {
         result = "È un pareggio!";
     } else {
         switch (playerChoice) {
-            case "rock":
-                result = (cpuChoice === "scissors") ? "HAI VINTO!" : "HAI PERSO!";
+            case "sasso":
+                result = (cpuChoice === "forbici") ? "HAI VINTO!" : "HAI PERSO!";
                 break;
-            case "paper":
-                result = (cpuChoice === "rock") ? "HAI VINTO!" : "HAI PERSO!";
+            case "carta":
+                result = (cpuChoice === "sasso") ? "HAI VINTO!" : "HAI PERSO!";
                 break;
-            case "scissors":
-                result = (cpuChoice === "paper") ? "HAI VINTO!" : "HAI PERSO!";
+            case "forbici":
+                result = (cpuChoice === "carta") ? "HAI VINTO!" : "HAI PERSO!";
                 break;
         }
     }
