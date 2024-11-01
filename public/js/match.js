@@ -35,10 +35,28 @@ function match() {
             "La folla esplode di entusiasmo! Chi vincerà?",
             "È il momento decisivo! La tensione è palpabile!",
             "Un colpo feroce! Come reagirà l’avversario?",
-            "Il pubblico è in piedi! È una battaglia epica!"
+            "Il pubblico è in piedi! È una battaglia epica!",
+            "Le emozioni sono alle stelle! Ogni attimo conta!",
+            "Un attacco improvviso! La strategia avversaria viene messa alla prova!",
+            "Il sudore scorre, ma nessuno si arrende!",
+            "Un colpo di scena! Chi avrà la meglio in questa sfida?",
+            "La battaglia si intensifica! Il vincitore è ancora sconosciuto!",
+            "L'atmosfera è elettrica! Il destino dei contendenti è in gioco!",
+            "Un attacco perfetto! Ma l'avversario è pronto a rispondere!",
+            "Le urla della folla risuonano come un'eco! Chi si porterà a casa la vittoria?",
+            "Un confronto leggendario! I guerrieri sono pronti a tutto!",
+            "Si sente il brivido dell'azione! Ogni mossa potrebbe essere decisiva!",
+            "La resistenza è messa alla prova! Solo i più forti sopravvivranno!"
         ];
+        const ringTheBell = new Audio('../assets/audio/wwe-bell.mp3');
 
+        function playBell() {
+            ringTheBell.play().catch(error => {
+                console.error("Impossibile riprodurre il suono:", error);
+            });
+        }
         alert("L'arbitro da via al match!");
+        playBell();
         let currentIndex = 0; // Indice per tenere traccia delle frasi mostrate
         const interval = 3000; // Intervallo di 3 secondi
 
