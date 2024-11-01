@@ -48,15 +48,7 @@ function match() {
             "Si sente il brivido dell'azione! Ogni mossa potrebbe essere decisiva!",
             "La resistenza è messa alla prova! Solo i più forti sopravvivranno!"
         ];
-        const ringTheBell = new Audio('../assets/audio/wwe-bell.mp3');
 
-        function playBell() {
-            ringTheBell.play().catch(error => {
-                console.error("Impossibile riprodurre il suono:", error);
-            });
-        }
-        alert("L'arbitro da via al match!");
-        playBell();
         let currentIndex = 0; // Indice per tenere traccia delle frasi mostrate
         const interval = 3000; // Intervallo di 3 secondi
 
@@ -119,4 +111,20 @@ function match() {
             vincitore: vincitore // Nome del vincitore
         });
     }
+}
+
+const ringTheBell = new Audio('../assets/audio/wwe-bell.mp3');
+
+function playBell() {
+    console.log("Riproduzione del suono della campana.");
+    ringTheBell.play().catch(error => {
+        console.error("Impossibile riprodurre il suono:", error);
+    });
+}
+
+function showAlertAndPlaySound(message) {
+    // Mostra l'alert
+    alert(message);
+    // Riproduci il suono dopo che l'alert è stato chiuso
+    playBell();
 }

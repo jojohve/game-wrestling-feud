@@ -32,6 +32,50 @@
             padding: 20px;
             text-align: center;
         }
+
+        .choices {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .choices button {
+            font-size: 7.5rem;
+            min-width: 160px;
+            margin: 0 10px;
+            border-radius: 250px;
+            background-color: rgb(64, 100, 175);
+            cursor: pointer;
+            transition: background-color0.5 ease;
+            border: none;
+        }
+
+        .choices button:hover {
+            background-color: rgb(64, 130, 175);
+        }
+
+        #playerDisplay,
+        #cpuDisplay {
+            font-size: 2.5rem;
+        }
+
+        #resultDisplay {
+            font-size: 5rem;
+            margin: 30px;
+        }
+
+        .scoreDisplay {
+            font-size: 2rem;
+        }
+
+        .greenText,
+        #playerScoreDisplay {
+            color: greenyellow;
+        }
+
+        .redText,
+        #cpuScoreDisplay {
+            color: rgb(255, 55, 55);
+        }
     </style>
 </head>
 
@@ -48,6 +92,26 @@
             <div id="turnMessage"></div>
             <div id="storicoMatch"></div>
 
+            <div class="choices">
+                <button onclick="playGame('rock')">👊</button>
+                <button onclick="playGame('paper')">🤚</button>
+                <button onclick="playGame('scissors')">✌️</button>
+            </div>
+
+            <div id="playerDisplay">Player: </div>
+            <div id="cpuDisplay">Cpu: </div>
+
+            <div id="resultDisplay"></div>
+
+            <div class="scoreDisplay">Player Score:
+                <span id="playerScoreDisplay">0</span>
+            </div>
+
+            <div class="scoreDisplay">Cpu Score:
+                <span id="cpuScoreDisplay">0</span>
+            </div>
+
+            <button id="continuaButton" style="display: none;" onclick="continua()">Continua</button>
         </div>
     </div>
 
@@ -59,7 +123,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            rps();
+            playGame();
         });
     </script>
 </body>

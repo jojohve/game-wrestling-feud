@@ -15,6 +15,7 @@
       {
         "button-name": "off"
       }
-    ]
+    ],
+    "leading-dot-classlist": "off"
   }
 }
