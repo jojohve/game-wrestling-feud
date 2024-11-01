@@ -19,7 +19,50 @@
 
         .vai-button:hover {
             background-color: #FFD700;
-            /* Colore leggermente più scuro al passaggio del mouse */
+        }
+
+        #azioniDiv {
+            display: grid;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #azioniDiv h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        #azioniDiv button {
+            padding: 10px 15px;
+            background-color: gold;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #azioniDiv button:hover {
+            background-color: #e2c938;
+        }
+
+        @media screen and (max-width: 500px) {
+            #azioniDiv {
+                font-size: 16px;
+                max-height: 250px;
+            }
+
+            #azioniDiv button {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
         }
     </style>
 </head>

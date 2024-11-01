@@ -167,7 +167,7 @@ function terminaRivalità() {
     if (playerGamePoints >= 2) {
         alert("Congratulazioni! Hai vinto la rivalità!");
     } else if (cpuGamePoints >= 2) {
-        alert("La CPU ha vinto la rivalità!");
+        alert("Peccato! La CPU ha vinto la rivalità!");
     }
     resetRivalry();
 }
@@ -187,7 +187,7 @@ function resetRivalry() {
     result = "";
 
     console.log("Rivalità resettata. Punteggi: ", playerGamePoints, cpuGamePoints);
-    window.location.href = '../home.html';
+    window.location.href = '../index.html';
 }
 
 function continua() {

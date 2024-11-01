@@ -1,3 +1,4 @@
+/* Stili per desktop */
 body {
     font-family: Arial, sans-serif;
     background-color: #222;
@@ -6,16 +7,17 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 50px;
+    margin: 20px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .character-grid {
     display: grid;
-    grid-template-columns: repeat(5, 150px);
-    /* 5 colonne */
-    gap: 20px;
-    /* Spaziatura tra le immagini */
+    grid-template-columns: repeat(5, 150px); /* 5 colonne */
+    gap: 20px; /* Spaziatura tra le immagini */
     margin: 20px;
+    justify-content: center;
 }
 
 .character {
@@ -24,6 +26,7 @@ body {
     border: 3px solid transparent;
     border-radius: 10px;
     transition: border 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
 }
 
 .character img {
@@ -33,21 +36,20 @@ body {
 }
 
 .character.selected {
-    border: 3px solid gold;
-    /* Bordo dorato per il personaggio selezionato */
-    transform: scale(1.1);
-    /* Aumenta leggermente la dimensione */
+    border: 3px solid gold; /* Bordo dorato per il personaggio selezionato */
+    transform: scale(1.1); /* Aumenta leggermente la dimensione */
 }
 
 .grid-container {
     margin-bottom: 40px;
-    overflow-y: scroll;
-    max-height: 250px;
-    max-width: 1600px;
+    overflow-y: auto;
+    max-height: 400px;
+    max-width: 1200px;
+    padding: 0 10px;
 }
 
 .confirm-button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: gold;
     border: none;
     border-radius: 5px;
@@ -57,71 +59,54 @@ body {
 }
 
 .confirm-button:hover {
-    background-color: #FFD700;
-    /* Colore leggermente più scuro al passaggio del mouse */
+    background-color: #FFD700; /* Colore leggermente più scuro al passaggio del mouse */
 }
 
-@media screen and (max-width: 500px){
+/* Stili per dispositivi mobili */
+@media screen and (max-width: 768px) {
     body {
-        font-family: Arial, sans-serif;
-        background-color: #222;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin: 20px;
+        margin: 0;
+        padding: 10px;
     }
-    
+
     .character-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 colonne per il layout mobile */
+        grid-template-columns: repeat(3, 1fr); /* 3 colonne per tablet */
+        gap: 15px;
+    }
+
+    .grid-container {
+        max-height: 300px;
+        max-width: 90%;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .character-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonne per smartphone */
         gap: 10px;
-        /* Riduce la spaziatura tra le immagini */
-        margin: 10px;
+        margin: 10px 0;
         width: 100%;
-        max-width: 400px;
+        max-width: 100%;
     }
-    
+
     .character {
-        position: relative;
-        cursor: pointer;
         border: 2px solid transparent;
-        border-radius: 10px;
-        transition: border 0.3s ease, transform 0.3s ease;
     }
-    
-    .character img {
-        width: 100%;
-        border-radius: 10px;
-        display: block;
-    }
-    
+
     .character.selected {
         border: 2px solid gold;
         transform: scale(1.05);
     }
-    
+
     .grid-container {
-        margin-bottom: 20px;
-        overflow-y: auto;
-        max-height: 300px;
+        max-height: 250px;
         max-width: 100%;
-        padding: 0 10px;
+        padding: 0;
     }
-    
+
     .confirm-button {
-        padding: 10px 15px;
-        background-color: gold;
-        border: none;
-        border-radius: 5px;
+        padding: 10px 20px;
         font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .confirm-button:hover {
-        background-color: #FFD700;
     }
 }

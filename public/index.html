@@ -89,44 +89,55 @@
     </div>
 
     <script>
-        //Animazione Button
+        // Rileva se l'utente è su un dispositivo mobile
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
         const startGameButton = document.getElementById('startGame');
         const messageDiv = document.getElementById('message');
 
-        startGameButton.addEventListener('mousedown', function () {
-            // Inizio dell'animazione
-            startGameButton.classList.add('active');
-            // Mostra il messaggio
-            messageDiv.style.display = 'block'; // Mostra il messaggio
-            messageDiv.classList.remove('fade-out'); // Rimuove eventuale classe di fade-out
-        });
-
-        startGameButton.addEventListener('mouseup', function () {
-            // Fine dell'animazione e verifica se l'animazione è completata
-            startGameButton.classList.remove('active');
-            // Nascondi il messaggio con transizione
-            messageDiv.classList.add('fade-out');
-            setTimeout(() => {
-                messageDiv.style.display = 'none'; // Nascondi il messaggio dopo la transizione
-            }, 1000); // Attendi 1 secondo prima di nascondere
-        });
-
-        startGameButton.addEventListener('mouseleave', function () {
-            // Rimuovi la classe active e nascondi il messaggio se il cursore esce dall'area del pulsante
-            startGameButton.classList.remove('active');
-            messageDiv.classList.add('fade-out');
-            setTimeout(() => {
-                messageDiv.style.display = 'none'; // Nascondi il messaggio dopo la transizione
-            }, 4000); // Attendi 1 secondo prima di nascondere
-        });
-
-        startGameButton.addEventListener('transitionend', function (event) {
-            // Controlla se l'animazione finale è completa
-            if (event.target === startGameButton && startGameButton.classList.contains('active')) {
-                // Reindirizza a home.html
+        if (isMobile) {
+            // Comportamento per dispositivi mobili
+            startGameButton.addEventListener('click', function () {
+                // Reindirizza a home.html al click
                 window.location.href = 'home.html';
-            }
-        });
+            });
+        } else {
+            // Comportamento per desktop
+            startGameButton.addEventListener('mousedown', function () {
+                // Inizio dell'animazione
+                startGameButton.classList.add('active');
+                // Mostra il messaggio
+                messageDiv.style.display = 'block'; // Mostra il messaggio
+                messageDiv.classList.remove('fade-out'); // Rimuove eventuale classe di fade-out
+            });
+
+            startGameButton.addEventListener('mouseup', function () {
+                // Fine dell'animazione e verifica se l'animazione è completata
+                startGameButton.classList.remove('active');
+                // Nascondi il messaggio con transizione
+                messageDiv.classList.add('fade-out');
+                setTimeout(() => {
+                    messageDiv.style.display = 'none'; // Nascondi il messaggio dopo la transizione
+                }, 1000); // Attendi 1 secondo prima di nascondere
+            });
+
+            startGameButton.addEventListener('mouseleave', function () {
+                // Rimuovi la classe active e nascondi il messaggio se il cursore esce dall'area del pulsante
+                startGameButton.classList.remove('active');
+                messageDiv.classList.add('fade-out');
+                setTimeout(() => {
+                    messageDiv.style.display = 'none'; // Nascondi il messaggio dopo la transizione
+                }, 4000); // Attendi 1 secondo prima di nascondere
+            });
+
+            startGameButton.addEventListener('transitionend', function (event) {
+                // Controlla se l'animazione finale è completa
+                if (event.target === startGameButton && startGameButton.classList.contains('active')) {
+                    // Reindirizza a home.html
+                    window.location.href = 'home.html';
+                }
+            });
+        }
     </script>
 </body>
 

@@ -24,11 +24,26 @@
             /* Metti il div sotto al contenuto */
         }
 
+        .continuaButton {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 1em;
+            /* Dimensione del font */
+            background-color: #007BFF;
+            /* Colore blu */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            /* Transizione per l'effetto hover */
+        }
+
         .rps {
             position: relative;
             z-index: 1;
             /* Metti il contenuto sopra al div di background */
-            color: white;
             padding: 20px;
             text-align: center;
         }
@@ -75,6 +90,19 @@
         .redText,
         #cpuScoreDisplay {
             color: rgb(255, 55, 55);
+        }
+
+        /* Media query per schermi più piccoli */
+        @media (max-width: 600px) {
+            .choices {
+                display: flex;
+                /* Attiva il layout flex */
+                justify-content: center;
+                /* Centra i pulsanti orizzontalmente */
+                width: 100%;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>

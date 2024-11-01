@@ -24,13 +24,67 @@
             /* Metti il div sotto al contenuto */
         }
 
+        h4 {
+            margin: 20px 0;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra del testo */
+        }
+
         .match {
             position: relative;
             z-index: 1;
             /* Metti il contenuto sopra al div di background */
-            color: white;
+            color: black;
             padding: 20px;
             text-align: center;
+        }
+
+        .continuaButton {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 1em;
+            /* Dimensione del font */
+            background-color: #007BFF;
+            /* Colore blu */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            /* Transizione per l'effetto hover */
+        }
+
+        .continuaButton:hover {
+            background-color: #0056b3;
+            /* Colore blu scuro al passaggio del mouse */
+        }
+
+        /* Stili per dispositivi mobili */
+        @media (max-width: 600px) {
+            .character-display {
+                font-size: 1.2em;
+                /* Dimensione del font ridotta per mobile */
+            }
+
+            h4 {
+                font-size: 1.5em;
+                /* Dimensione dell'intestazione più piccola per mobile */
+            }
+
+            .continuaButton {
+                font-size: 1.2em;
+                /* Font più grande per i pulsanti su mobile */
+            }
+
+            #turnMessage,
+            #storicoMatch,
+            #fraseMatch,
+            #risultatoMatch {
+                font-size: 0.9em;
+                /* Dimensione del font ridotta per mobile */
+            }
         }
     </style>
 </head>
