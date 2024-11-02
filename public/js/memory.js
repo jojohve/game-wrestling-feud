@@ -40,7 +40,7 @@ function scegliDifficolta() {
   const difficolta = [
     { livello: "facile", tempo: 60 },
     { livello: "difficile", tempo: 30 },
-    { livello: "estremo", tempo: 10 }
+    { livello: "estremo", tempo: 15 }
   ];
   
   // Scegli casualmente una difficoltà
