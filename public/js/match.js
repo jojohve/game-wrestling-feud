@@ -10,25 +10,24 @@ function match() {
     let probabilitaVittoriaGiocatore1 = 0.5 + (differenzaPunti / 100);
     probabilitaVittoriaGiocatore1 = Math.min(Math.max(probabilitaVittoriaGiocatore1, 0.1), 0.9);
 
-    // Determinazione del vincitore
-    vincitore = Math.random() < probabilitaVittoriaGiocatore1 ? playerCharacter : cpuCharacter; // Usa i valori delle variabili
+    vincitore = Math.random() < probabilitaVittoriaGiocatore1 ? playerCharacter : cpuCharacter;
 
-    // Definisci totalFrasi in base a totalMatches
     let totalFrasi;
     if (totalMatches === 0) {
-        totalFrasi = Math.floor(Math.random() * 3) + 1; // Da 1 a 3
+        totalFrasi = Math.floor(Math.random() * 3) + 1;
     } else if (totalMatches === 1) {
-        totalFrasi = Math.floor(Math.random() * 3) + 2; // Da 2 a 4
+        totalFrasi = Math.floor(Math.random() * 3) + 2;
     } else if (totalMatches === 2) {
-        totalFrasi = Math.floor(Math.random() * 3) + 3; // Da 3 a 5
+        totalFrasi = Math.floor(Math.random() * 3) + 3;
     } else if (totalMatches === 3) {
-        totalFrasi = Math.floor(Math.random() * 4) + 4; // Da 4 a 7
+        totalFrasi = Math.floor(Math.random() * 4) + 4;
     } else {
-        totalFrasi = 1; // Imposta un valore predefinito se totalMatches è maggiore di 3
+        totalFrasi = 2;
     }
 
     const fraseMatch = document.getElementById('fraseMatch');
-    risultatoMatchElement = document.getElementById('risultatoMatch'); // Assegna qui per essere visibile
+    risultatoMatchElement = document.getElementById('risultatoMatch');
+
     if (fraseMatch) {
         const frasiMatch = [
             "I due sfidanti si lanciano sguardi di sfida!",
@@ -46,47 +45,51 @@ function match() {
             "Le urla della folla risuonano come un'eco! Chi si porterà a casa la vittoria?",
             "Un confronto leggendario! I guerrieri sono pronti a tutto!",
             "Si sente il brivido dell'azione! Ogni mossa potrebbe essere decisiva!",
-            "La resistenza è messa alla prova! Solo i più forti sopravvivranno!"
+            "La resistenza è messa alla prova! Solo i più forti sopravvivranno!",
+            "Il campo di battaglia trema sotto i colpi dei guerrieri!",
+            "Un attimo di esitazione può costare caro in questa lotta senza tregua!",
+            "Gli avversari si scambiano colpi furiosi, chi cederà per primo?",
+            "La tensione sale, ogni respiro è fondamentale per la vittoria!"
         ];
 
-        let currentIndex = 0; // Indice per tenere traccia delle frasi mostrate
-        const interval = 3000; // Intervallo di 3 secondi
-
-        // Mostra la prima frase all'inizio
-        fraseMatch.textContent = frasiMatch[Math.floor(Math.random() * frasiMatch.length)];
+        let frasiUsate = new Set();
+        let currentIndex = 0;
+        const interval = 3000;
 
         const changeFrase = () => {
-            // Se l'indice è minore del numero totale di frasi
             if (currentIndex < totalFrasi) {
-                const fraseCasuale = frasiMatch[Math.floor(Math.random() * frasiMatch.length)];
-                fraseMatch.innerHTML += `<p>${fraseCasuale}</p>`; // Aggiungi la nuova frase in un paragrafo
-                currentIndex++; // Incrementa l'indice
+                let fraseCasuale;
+
+                // Cerca una frase casuale non ancora usata
+                do {
+                    fraseCasuale = frasiMatch[Math.floor(Math.random() * frasiMatch.length)];
+                } while (frasiUsate.has(fraseCasuale));
+
+                // Aggiungi la frase selezionata all'elenco delle frasi usate
+                frasiUsate.add(fraseCasuale);
+                fraseMatch.innerHTML += `<p>${fraseCasuale}</p>`;
+                currentIndex++;
             } else {
-                clearInterval(intervalId); // Ferma l'intervallo
+                clearInterval(intervalId);
 
-                // Mostra il pulsante "Continua"
-                continuaButton.style.display = 'block'; // Mostra il pulsante
+                continuaButton.style.display = 'block';
 
-                updateScoreDisplay(); // Aggiorna i punteggi sullo schermo
-
-                alert("Uno! Due! Tre! Finisce il match!"); // Mostra l'alert finale
+                updateScoreDisplay();
+                alert("Uno! Due! Tre! Finisce il match!");
                 terminaMatch(vincitore);
             }
         };
 
-        // Inizia a cambiare frase dopo 3 secondi
         const intervalId = setInterval(changeFrase, interval);
     }
 
     function terminaMatch(vincitore) {
-        // Aggiorna i punteggi
         aggiornaPunteggi(vincitore);
 
-        // Mostra il risultato finale
         const risultatoMatch = vincitore === playerCharacter ? `${playerCharacter} vince il match!` : `${cpuCharacter} vince il match!`;
-        risultatoMatchElement.textContent = risultatoMatch; // Mostra il risultato
+        risultatoMatchElement.textContent = risultatoMatch;
 
-        updateScoreDisplay(); // Aggiorna l'interfaccia utente
+        updateScoreDisplay();
     }
 
     function aggiornaPunteggi(vincitore) {
@@ -103,12 +106,11 @@ function match() {
         }
         salvaDati();
 
-        // Aggiungere il match allo storico
         turnHistory.push({
-            match: turnHistory.length + 1, // Numero del match
+            match: turnHistory.length + 1,
             playerScore: playerScore,
             cpuScore: cpuScore,
-            vincitore: vincitore // Nome del vincitore
+            vincitore: vincitore
         });
     }
 }
@@ -123,8 +125,6 @@ function playBell() {
 }
 
 function showAlertAndPlaySound(message) {
-    // Mostra l'alert
     alert(message);
-    // Riproduci il suono dopo che l'alert è stato chiuso
     playBell();
 }

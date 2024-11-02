@@ -12,7 +12,7 @@ body {
 
 @font-face {
     font-family: myfont1;
-    src: url(/assets/fonts/OriginTech\ personal\ use.otf);
+    src: url(../assets/fonts/OriginTech\ personal\ use.otf);
 }
 
 .content .pre-game-conteiner h1 {
@@ -600,9 +600,14 @@ body {
         font-size: 20px;
     }
 
+    .content .faq-contenitor .faq .card p {
+        width: 300px;
+    }
+
     /* Rimozione del box-shadow e altre animazioni per semplicità */
     .background-carousel {
         filter: blur(3px) brightness(0.9);
-        animation: none; /* Rimuove animazioni di background per migliorare la prestazione su mobile */
+        animation: none;
+        /* Rimuove animazioni di background per migliorare la prestazione su mobile */
     }
 }

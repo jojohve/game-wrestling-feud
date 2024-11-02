@@ -44,6 +44,7 @@ h1 {
   .result {
     padding: 10px;
     font-size: 20px;
+    height: 110vh;
   }
   .character-display {
     font-size: 16px;

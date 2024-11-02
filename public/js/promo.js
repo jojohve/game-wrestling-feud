@@ -175,12 +175,23 @@ function generateRandomPhrases() {
                   console.warn(`Nessuna frase trovata per la categoria: ${category}`);
             }
       }
+
       return randomChoices;
+}
+
+// Funzione per mescolare l'ordine delle frasi sui bottoni
+function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+      }
 }
 
 // Visualizza le frasi nel DOM
 function displayPhrases() {
-      const randomChoices = generateRandomPhrases();
+      let randomChoices = generateRandomPhrases();
+      shuffle(randomChoices); // Mescola l'ordine delle frasi
+
       randomChoices.forEach((phrase, index) => {
             document.getElementById(`choice${index + 1}`).innerText = phrase;
       });
