@@ -12,8 +12,6 @@ let cpuScoreMG = 0;
 function playGame(playerChoice) {
     const cpuChoice = choices[Math.floor(Math.random() * 3)];
 
-    console.log(cpuChoice);
-
     let result = "";
 
     if (playerChoice === cpuChoice) {
@@ -31,6 +29,7 @@ function playGame(playerChoice) {
                 break;
         }
     }
+    console.log(cpuChoice);
 
     playerDisplay.textContent = `${playerCharacter} : ${playerChoice}`;
     cpuDisplay.textContent = `${cpuCharacter} : ${cpuChoice}`;
