@@ -22,7 +22,7 @@ function setupCharacterSelection(gridId, onSelect) {
     });
 }
 
-// Selezione casuale se si preme nella tendina della cpu
+// Selezione casuale se si preme nella tendina dell'utente
 function selectRandomPlayer() {
     const characters = Array.from(document.querySelectorAll('.character-grid .character')).filter(character => !["Casuale"].includes(character.dataset.name));
 
@@ -59,7 +59,7 @@ function selectRandomPlayer() {
     }
 }
 
-// Selezione casuale se si preme il tasto casuale nella tendina player
+// Selezione casuale se si preme il tasto casuale nella tendina cpu
 function selectRandomCpu() {
     const characters = Array.from(document.querySelectorAll('.character-grid .character')).filter(character => !["CpuCasuale"].includes(character.dataset.name));
 
