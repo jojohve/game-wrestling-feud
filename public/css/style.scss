@@ -603,11 +603,4 @@ body {
     .content .faq-contenitor .faq .card p {
         width: 300px;
     }
-
-    /* Rimozione del box-shadow e altre animazioni per semplicità */
-    .background-carousel {
-        filter: blur(3px) brightness(0.9);
-        animation: none;
-        /* Rimuove animazioni di background per migliorare la prestazione su mobile */
-    }
 }

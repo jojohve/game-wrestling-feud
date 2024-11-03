@@ -39,8 +39,8 @@ let timerDisplay = document.getElementById("Timer"); // Mostra il timer
 function scegliDifficolta() {
   const difficolta = [
     { livello: "facile", tempo: 60 },
-    { livello: "difficile", tempo: 30 },
-    { livello: "estremo", tempo: 15 }
+    { livello: "normale", tempo: 40 },
+    { livello: "difficile", tempo: 20 }
   ];
   
   // Scegli casualmente una difficoltà
