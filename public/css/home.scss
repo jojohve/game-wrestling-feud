@@ -115,14 +115,14 @@ body {
     .character-grid {
         gap: 10px;
         margin: 10px 0;
-        width: 150%;
-        max-width: 150%;
+        width: 100%;
+        max-width: 100%;
     }
 
     .character {
         border: 2px solid transparent;
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
     }
 
     .maleCharacter, .femaleCharacter {
