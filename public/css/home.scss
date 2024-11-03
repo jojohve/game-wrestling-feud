@@ -117,6 +117,8 @@ body {
         margin: 10px 0;
         width: 100%;
         max-width: 100%;
+        overflow: hidden;
+
     }
 
     .character {
@@ -154,7 +156,6 @@ body {
   
   body {
      background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
-    overflow: hidden;
   }
   
   @function random_range($min, $max) {
