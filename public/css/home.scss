@@ -17,6 +17,7 @@ body {
     grid-template-columns: 1fr; /* Singola colonna per ogni riga */
     gap: 20px; /* Spazio tra le due righe */
     width: 100%;
+    overflow: hidden;
 }
 
 /* Configurazione per le righe maschili e femminili */
@@ -152,10 +153,6 @@ body {
   }
   
   body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
      background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
     overflow: hidden;
   }
@@ -173,7 +170,7 @@ body {
     width: 100%;
     height: 120%;
     transform: rotate(-45deg);
-    z-index: -5;
+    z-index: -10;
   }
   
   .star {
