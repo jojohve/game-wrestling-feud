@@ -117,6 +117,8 @@ body {
   }
   .character {
     border: 2px solid transparent;
+    width: 100px;
+    height: 100px;
   }
   .maleCharacter, .femaleCharacter {
     grid-template-columns: 1fr; /* Singola colonna per ogni riga */
