@@ -98,7 +98,6 @@ body {
     gap: 15px;
   }
   .grid-container {
-    max-height: 300px;
     max-width: 90%;
     padding: 0;
     overflow-y: auto;
