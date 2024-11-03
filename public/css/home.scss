@@ -14,14 +14,23 @@ body {
 
 .character-grid {
     display: grid;
-    grid-template-columns: repeat(3, 150px); /* 3 colonne */
-    gap: 20px; /* Spaziatura tra le immagini */
-    margin: 20px;
-    justify-content: center;
+    grid-template-columns: 1fr; /* Singola colonna per ogni riga */
+    gap: 20px; /* Spazio tra le due righe */
+    width: 100%;
+}
+
+/* Configurazione per le righe maschili e femminili */
+.maleCharacter, .femaleCharacter {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* Abilita lo scorrimento orizzontale */
+    padding: 10px 0;
+    white-space: nowrap; /* Impedisce ai personaggi di andare a capo */
 }
 
 .character {
     position: relative;
+    flex: 0 0 auto; /* Impedisce ai personaggi di ridimensionarsi */
     cursor: pointer;
     border: 3px solid transparent;
     border-radius: 10px;
@@ -37,9 +46,12 @@ body {
 }
 
 .character.selected {
-    border: 3px solid gold; /* Bordo dorato per il personaggio selezionato */
-    transform: scale(1.1); /* Aumenta leggermente la dimensione */
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Ombra dorata */
+    border: 3px solid gold;
+    /* Bordo dorato per il personaggio selezionato */
+    transform: scale(1.1);
+    /* Aumenta leggermente la dimensione */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    /* Ombra dorata */
 }
 
 .grid-container {
@@ -48,6 +60,13 @@ body {
     max-height: 400px;
     max-width: 1200px;
     padding: 0 10px;
+}
+
+.maleCharacter,
+.femaleCharacter {
+    display: flex;
+    overflow-x: auto;
+    /* Abilita lo scorrimento orizzontale */
 }
 
 /* Pulsante di conferma */
@@ -62,8 +81,10 @@ body {
 }
 
 .confirm-button:hover {
-    background-color: #FFD700; /* Colore leggermente più scuro al passaggio del mouse */
-    transform: translateY(-2px); /* Effetto di sollevamento */
+    background-color: #FFD700;
+    /* Colore leggermente più scuro al passaggio del mouse */
+    transform: translateY(-2px);
+    /* Effetto di sollevamento */
 }
 
 /* Stili per dispositivi mobili */
@@ -74,7 +95,6 @@ body {
     }
 
     .character-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 colonne per tablet */
         gap: 15px;
     }
 
@@ -83,11 +103,16 @@ body {
         max-width: 90%;
         padding: 0;
     }
+    
+    .maleCharacter, .femaleCharacter {
+        grid-template-columns: 1fr; /* Singola colonna per ogni riga */
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .character-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonne per smartphone */
         gap: 10px;
         margin: 10px 0;
         width: 100%;
@@ -96,6 +121,12 @@ body {
 
     .character {
         border: 2px solid transparent;
+    }
+
+    .maleCharacter, .femaleCharacter {
+        grid-template-columns: 1fr; /* Singola colonna per ogni riga */
+        display: flex;
+        flex-direction: row;
     }
 
     .character.selected {
