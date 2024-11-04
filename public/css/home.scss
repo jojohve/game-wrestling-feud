@@ -14,24 +14,30 @@ body {
 
 .character-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Singola colonna per ogni riga */
-    gap: 20px; /* Spazio tra le due righe */
+    grid-template-columns: 1fr;
+    /* Singola colonna per ogni riga */
+    gap: 20px;
+    /* Spazio tra le due righe */
     width: 100%;
     overflow: hidden;
 }
 
 /* Configurazione per le righe maschili e femminili */
-.maleCharacter, .femaleCharacter {
+.maleCharacter,
+.femaleCharacter {
     display: flex;
     gap: 10px;
-    overflow-x: auto; /* Abilita lo scorrimento orizzontale */
+    overflow-x: auto;
+    /* Abilita lo scorrimento orizzontale */
     padding: 10px 0;
-    white-space: nowrap; /* Impedisce ai personaggi di andare a capo */
+    white-space: nowrap;
+    /* Impedisce ai personaggi di andare a capo */
 }
 
 .character {
     position: relative;
-    flex: 0 0 auto; /* Impedisce ai personaggi di ridimensionarsi */
+    flex: 0 0 auto;
+    /* Impedisce ai personaggi di ridimensionarsi */
     cursor: pointer;
     border: 3px solid transparent;
     border-radius: 10px;
@@ -40,7 +46,9 @@ body {
 }
 
 .character img {
-    width: 100%;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
     border-radius: 10px;
     display: block;
     transition: transform 0.3s ease;
@@ -57,7 +65,7 @@ body {
 
 .grid-container {
     margin-bottom: 40px;
-    max-height: 400px;
+    max-height: 1200px;
     max-width: 1200px;
     padding: 0 10px;
 }
@@ -101,11 +109,12 @@ body {
     .grid-container {
         max-width: 90%;
         padding: 0;
-        overflow-y: auto;
     }
-    
-    .maleCharacter, .femaleCharacter {
-        grid-template-columns: 1fr; /* Singola colonna per ogni riga */
+
+    .maleCharacter,
+    .femaleCharacter {
+        grid-template-columns: 1fr;
+        /* Singola colonna per ogni riga */
         display: flex;
         flex-direction: row;
     }
@@ -121,12 +130,12 @@ body {
 
     .character {
         border: 2px solid transparent;
-        width: 150px;
-        height: 150px;
     }
 
-    .maleCharacter, .femaleCharacter {
-        grid-template-columns: 1fr; /* Singola colonna per ogni riga */
+    .maleCharacter,
+    .femaleCharacter {
+        grid-template-columns: 1fr;
+        /* Singola colonna per ogni riga */
         display: flex;
         flex-direction: row;
     }
@@ -137,7 +146,6 @@ body {
     }
 
     .grid-container {
-        max-height: 250px;
         max-width: 100%;
         padding: 0;
     }
