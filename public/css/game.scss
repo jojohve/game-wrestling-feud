@@ -1,4 +1,5 @@
 body {
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
     background-color: #222;
     color: #000000;
@@ -41,8 +42,8 @@ h1 {
 }
 
 .characterContainer img {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     background-size: cover;
     border-radius: 50%;
     transition: transform 0.3s ease;
@@ -59,17 +60,14 @@ h1 {
 }
 
 .characterContainer img:hover {
-    transform: scale(1.05); /* Aggiungi un effetto di zoom al passaggio del mouse */
+    transform: scale(1.05);
+    /* Aggiungi un effetto di zoom al passaggio del mouse */
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
     body {
         background-size: contain;
         padding: 10px;
-    }
-
-    h1 {
-        font-size: 24px; /* Ridimensionamento del titolo */
     }
 
     .result {
@@ -77,8 +75,28 @@ h1 {
         font-size: 20px;
     }
 
+    .characterContainer {
+        width: 100%;
+    }
+
     .character-display {
         font-size: 16px;
         padding: 8px;
+    }
+
+    .turn {
+        width: 100%;
+    }
+
+    #fraseMatch {
+        height: auto; /* Imposta un'altezza per il contenitore */
+        overflow-y: auto; /* Abilita lo scrolling verticale */
+    }
+
+    #turnMessage,
+    #storicoMatch,
+    #fraseMatch,
+    #risultatoMatch {
+        font-size: 16px;
     }
 }

@@ -58,6 +58,7 @@ function startTimer() {
       alert("Tempo scaduto! La CPU ha vinto.");
       turnMessage.innerHTML = `Punteggio: ${playerCharacter} ${playerScore}, ${cpuCharacter} ${cpuScore}`;
       continuaButton.style.display = 'block'; // Mostra il pulsante
+      continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
     } else {
       timerDisplay.textContent = `Tempo rimasto: ${timeLeft} secondi`;
       timeLeft--;

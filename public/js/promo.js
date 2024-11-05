@@ -250,6 +250,7 @@ function checkForWinner() {
 
             // Mostra il pulsante "Continua"
             continuaButton.style.display = 'block'; // Mostra il pulsante
+            continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
 
             aggiornaPunteggi(winner);
 

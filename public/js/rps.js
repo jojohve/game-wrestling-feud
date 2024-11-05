@@ -62,11 +62,13 @@ function determinaRisultato() {
         playerScore += 5;
             // Mostra il pulsante "Continua"
     continuaButton.style.display = 'block'; // Mostra il pulsante
+    continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
     } else if (cpuScoreMG >= 3) {
         alert("La CPU ha vinto!");
         cpuScore += 5;
             // Mostra il pulsante "Continua"
     continuaButton.style.display = 'block'; // Mostra il pulsante
+    continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
     }
     salvaDati();
 }

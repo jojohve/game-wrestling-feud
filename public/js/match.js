@@ -69,10 +69,14 @@ function match() {
                 frasiUsate.add(fraseCasuale);
                 fraseMatch.innerHTML += `<p>${fraseCasuale}</p>`;
                 currentIndex++;
+
+                // Scorri fino all'ultima frase generata
+                fraseMatch.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
             } else {
                 clearInterval(intervalId);
 
                 continuaButton.style.display = 'block';
+                continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
 
                 updateScoreDisplay();
                 alert("Uno! Due! Tre! Finisce il match!");
