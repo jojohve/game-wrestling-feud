@@ -38,12 +38,16 @@ function selectRandomPlayer() {
     const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
     const characterName = randomCharacter.getAttribute('data-name');
 
+    // Recupera il percorso dell'immagine dal data attribute
+    const imgSrc = randomCharacter.getAttribute('data-img-src');
+
     // Log: Visualizza il personaggio selezionato
     console.log("Personaggio casuale selezionato per il giocatore:", characterName);
 
     // Aggiorna la selezione e segna il personaggio come selezionato
     selectedPlayerCharacter = characterName; // Memorizza il personaggio selezionato
     localStorage.setItem('selectedPlayerCharacter', selectedPlayerCharacter); // Salva nel localStorage
+    localStorage.setItem('selectedPlayerImageSrc', imgSrc); // Salva il percorso dell'immagine
 
     // Aggiungi la classe "selected" al personaggio casuale
     const playerGridCharacters = document.querySelectorAll('#player-grid .character');
@@ -75,12 +79,16 @@ function selectRandomCpu() {
     const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
     const characterName = randomCharacter.getAttribute('data-name');
 
+    // Recupera il percorso dell'immagine dal data attribute
+    const imgSrc = randomCharacter.getAttribute('data-img-src');
+
     // Log: Visualizza il personaggio selezionato
     console.log("Personaggio casuale selezionato per la CPU:", characterName);
 
     // Aggiorna la selezione e segna il personaggio come selezionato
     selectedCpuCharacter = characterName; // Memorizza il personaggio della CPU
     localStorage.setItem('selectedCpuCharacter', selectedCpuCharacter); // Salva nel localStorage
+    localStorage.setItem('selectedCpuImageSrc', imgSrc); // Salva il percorso dell'immagine
 
     // Aggiungi la classe "selected" al personaggio casuale
     const cpuGridCharacters = document.querySelectorAll('#cpu-grid .character');
@@ -105,7 +113,7 @@ setupCharacterSelection('player-grid', (name) => {
     if (playerCharacterElement) {
         // Recupera il percorso dell'immagine dal data attribute
         const imgSrc = playerCharacterElement.getAttribute('data-img-src');
-        
+
         // Salva sia il nome del personaggio sia il percorso dell'immagine nel localStorage
         localStorage.setItem('selectedPlayerCharacter', name);
         localStorage.setItem('selectedPlayerImageSrc', imgSrc);
@@ -122,7 +130,7 @@ setupCharacterSelection('cpu-grid', (name) => {
     if (cpuCharacterElement) {
         // Recupera il percorso dell'immagine dal data attribute
         const imgSrc = cpuCharacterElement.getAttribute('data-img-src');
-        
+
         // Salva sia il nome del personaggio sia il percorso dell’immagine nel localStorage
         localStorage.setItem('selectedCpuCharacter', name);
         localStorage.setItem('selectedCpuImageSrc', imgSrc);
@@ -140,7 +148,13 @@ document.getElementById('confirm-button').addEventListener('click', () => {
     if (selectedPlayerCharacter && selectedCpuCharacter) {
         // Memorizza le selezioni in localStorage (opzionale)
         localStorage.setItem('selectedPlayerCharacter', selectedPlayerCharacter);
+
+        const playerImageSrc = localStorage.getItem('selectedPlayerImageSrc'); // Recupera l'URL dell'immagine del personaggio del player
+        localStorage.setItem('selectedImageSrc', playerImageSrc);
+
         localStorage.setItem('selectedCpuCharacter', selectedCpuCharacter);
+        const cpuImageSrc = localStorage.getItem('selectedCpuImageSrc'); // Recupera l'URL dell'immagine del personaggio della CPU
+        localStorage.setItem('selectedCpuImageSrc', cpuImageSrc);
 
         // Reindirizza a game.html
         window.location.href = 'root/game.html';
@@ -153,27 +167,4 @@ document.getElementById('confirm-button').addEventListener('click', () => {
 function recordTurn(turnResult) {
     turnHistory.push(turnResult); // Aggiunge il risultato del turno allo storico
     localStorage.setItem('turnHistory', JSON.stringify(turnHistory)); // Salva lo storico nel localStorage
-}
-
-function displaySelectedCharacters() {
-    // Recupera l'URL delle immagini dei personaggi dal localStorage
-    const playerImageSrc = localStorage.getItem('selectedPlayerImageSrc');
-    const cpuImageSrc = localStorage.getItem('selectedCpuImageSrc');
-
-    // Recupera i contenitori delle immagini nella pagina
-    const playerImageElement = document.getElementById('player-image');
-    const cpuImageElement = document.getElementById('cpu-image');
-
-    // Imposta gli src delle immagini se i percorsi sono disponibili
-    if (playerImageSrc) {
-        playerImageElement.src = playerImageSrc;
-    } else {
-        console.warn("Immagine del personaggio del giocatore non trovata.");
-    }
-
-    if (cpuImageSrc) {
-        cpuImageElement.src = cpuImageSrc;
-    } else {
-        console.warn("Immagine del personaggio della CPU non trovata.");
-    }
 }

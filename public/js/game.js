@@ -12,6 +12,7 @@ let result = "";
 
 startMessageGame();
 console.log("La partita è iniziata");
+displaySelectedCharacters();
 
 function iniziaTurno() {
     currentTurn++; // Aggiorna il turno
@@ -27,6 +28,32 @@ function iniziaTurno() {
         mostraScelteGiocatore();
     } else {
         eseguiSceltaCpu();
+    }
+}
+
+// Funzione per mostrare i personaggi selezionati nella pagina di gioco
+function displaySelectedCharacters() {
+    // Recupera i dati dal localStorage
+    const playerCharacter = localStorage.getItem('selectedPlayerCharacter');
+    const playerImageSrc = localStorage.getItem('selectedPlayerImageSrc');
+    
+    const cpuCharacter = localStorage.getItem('selectedCpuCharacter');
+    const cpuImageSrc = localStorage.getItem('selectedCpuImageSrc');
+    
+    // Associa i dati agli elementi HTML della pagina
+    const playerImageElement = document.getElementById('player-image');
+    const cpuImageElement = document.getElementById('cpu-image');
+
+    if (playerCharacter && playerImageSrc) {
+        playerImageElement.src = playerImageSrc; // Imposta l'immagine del giocatore
+    } else {
+        console.warn("Immagine o nome del personaggio del giocatore non trovati.");
+    }
+
+    if (cpuCharacter && cpuImageSrc) {
+        cpuImageElement.src = cpuImageSrc; // Imposta l'immagine della CPU
+    } else {
+        console.warn("Immagine o nome del personaggio della CPU non trovati.");
     }
 }
 

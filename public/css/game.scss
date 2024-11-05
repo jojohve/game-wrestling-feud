@@ -36,15 +36,30 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 150px;
+    height: 200px;
+    gap: 10px;
 }
 
 .characterContainer img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-size: cover;
-    border-radius: 10px;
+    border-radius: 50%;
     transition: transform 0.3s ease;
+}
+
+.characterContainer #player-image {
+    border: 5px solid rgba(0, 0, 255, 0.7);
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
+}
+
+.characterContainer #cpu-image {
+    border: 5px solid rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+}
+
+.characterContainer img:hover {
+    transform: scale(1.05); /* Aggiungi un effetto di zoom al passaggio del mouse */
 }
 
 @media screen and (max-width: 500px){

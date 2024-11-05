@@ -77,12 +77,12 @@
 
         <div class="turn" style="display: grid; font-size: smaller;">
             <div class="characterContainer">
-                <div id="player-image">
-                    <img id="player-image" alt="Immagine del giocatore" />
+                <div id="playerImageSrc">
+                    <img id="player-image" src="" alt="Immagine del giocatore" />
                 </div>
                 <span id="whatTurnItIs"></span>
-                <div id="cpu-image">
-                    <img id="cpu-image" alt="Immagine della CPU" />
+                <div id="cpuImageSrc">
+                    <img id="cpu-image" src="" alt="Immagine della CPU" />
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            window.onload = displaySelectedCharacters;
+            displaySelectedCharacters();
             iniziaTurno();
             fineGioco(result);
         });
