@@ -14,18 +14,25 @@ function playGame(playerChoice) {
 
     let result = "";
 
+
     if (playerChoice === cpuChoice) {
         result = "È un pareggio!";
     } else {
         switch (playerChoice) {
             case "sasso":
                 result = (cpuChoice === "forbici") ? "HAI VINTO!" : "HAI PERSO!";
+                playerDisplay.style.display = 'block'; // Mostra
+                cpuDisplay.style.display = 'block'; // Mostra
                 break;
             case "carta":
                 result = (cpuChoice === "sasso") ? "HAI VINTO!" : "HAI PERSO!";
+                playerDisplay.style.display = 'block'; // Mostra
+                cpuDisplay.style.display = 'block'; // Mostra
                 break;
             case "forbici":
                 result = (cpuChoice === "carta") ? "HAI VINTO!" : "HAI PERSO!";
+                playerDisplay.style.display = 'block'; // Mostra
+                cpuDisplay.style.display = 'block'; // Mostra
                 break;
         }
     }
@@ -60,15 +67,15 @@ function determinaRisultato() {
     if (playerScoreMG >= 3) {
         alert("Congratulazioni! Hai vinto!");
         playerScore += 5;
-            // Mostra il pulsante "Continua"
-    continuaButton.style.display = 'block'; // Mostra il pulsante
-    continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
+        // Mostra il pulsante "Continua"
+        continuaButton.style.display = 'block'; // Mostra il pulsante
+        continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
     } else if (cpuScoreMG >= 3) {
         alert("La CPU ha vinto!");
         cpuScore += 5;
-            // Mostra il pulsante "Continua"
-    continuaButton.style.display = 'block'; // Mostra il pulsante
-    continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
+        // Mostra il pulsante "Continua"
+        continuaButton.style.display = 'block'; // Mostra il pulsante
+        continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
     }
     salvaDati();
 }

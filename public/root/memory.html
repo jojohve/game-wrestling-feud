@@ -131,6 +131,11 @@
                 gap: 5px;
             }
 
+            .turn {
+                max-width: 100%;
+                justify-content: space-around;
+            }
+
             #continuaButton {
                 font-size: 1em;
                 /* Font più grande per i pulsanti su mobile */
@@ -144,7 +149,7 @@
             .item::before {
                 font-size: 1em;
                 /* Dimensione del font ridotto per mobile */
-            }
+            }   
         }
     </style>
 </head>
@@ -152,21 +157,26 @@
 <body>
     <div class="background"></div>
     <div class="result">
-        <div class="character-display">
-            <p><strong style="color: blue;">(Player) </strong> <span id="playerCharacter"></span> <span
-                    style="color: rgba(0, 0, 0, 0.7);">vs</span> <strong style="color: red;">(CPU)</strong> <span
-                    id="cpuCharacter"></span></p>
-        </div>
-        <div class="memory">
-            <div class="characterContainer">
-                <div id="playerImageSrc">
-                    <img id="player-image" src="" alt="Immagine del giocatore" />
-                </div>
-                <span id="whatTurnItIs"></span>
-                <div id="cpuImageSrc">
-                    <img id="cpu-image" src="" alt="Immagine della CPU" />
+
+        <div class="turn" style="display: grid; font-size: smaller;">
+            <div class="character-display">
+                <div class="characterContainer">
+                    <div id="playerImageSrc">
+                        <strong style="color: blue;">Player</strong>
+                        <img id="player-image" src="" alt="Immagine del giocatore" />
+                        <span id="playerCharacter"></span>
+                    </div>
+                    <span id="whatTurnItIs"></span>
+                    <div id="cpuImageSrc">
+                        <strong style="color: red;">CPU</strong>
+                        <img id="cpu-image" src="" alt="Immagine della CPU" />
+                        <span id="cpuCharacter"></span>
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="memory">
             
             <div id="turnMessage"></div>
             <div id="storicoMatch"></div>

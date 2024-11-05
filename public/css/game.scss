@@ -16,6 +16,31 @@ h1 {
     margin-bottom: 20px;
 }
 
+@font-face {
+    font-family: pgfont1;
+    src: url(../assets/fonts/Nowharehouse.ttf);
+}
+
+@font-face {
+    font-family: pgfont2;
+    src: url(../assets/fonts/Road_Rage.otf);
+}
+
+@font-face {
+    font-family: pgfont3;
+    src: url(../assets/fonts/kenyan\ coffee\ bd\ it.otf);
+}
+
+@font-face {
+    font-family: pgfont4;
+    src: url(../assets/fonts/CaviarDreams.ttf);
+}
+
+@font-face {
+    font-family: pgfont5;
+    src: url(../assets/fonts/Booked.ttf);
+}
+
 .result {
     padding: 20px;
     border-radius: 10px;
@@ -47,6 +72,7 @@ h1 {
     background-size: cover;
     border-radius: 50%;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .characterContainer #player-image {
@@ -62,6 +88,42 @@ h1 {
 .characterContainer img:hover {
     transform: scale(1.05);
     /* Aggiungi un effetto di zoom al passaggio del mouse */
+}
+
+.characterContainer strong {
+    font-family: pgfont1;
+    cursor: default;
+}
+
+#turnChoice {
+    font-family: pgfont2;
+    font-size: larger;
+    margin-top: 20px;
+}
+
+#playerCharacter,
+#cpuCharacter {
+    font-family: pgfont3;
+    cursor: default;
+    font-size: larger;
+}
+
+#playerImageSrc,
+#cpuImageSrc {
+    display: grid;
+    margin: 10px;
+    justify-content: center;
+}
+
+#turnMessage,
+#storicoMatch {
+    line-height: 2rem;
+}
+
+#turnMessage,
+#storicoMatch,
+#whatTurnItIs {
+    font-family: pgfont4;
 }
 
 @media screen and (max-width: 500px) {
@@ -86,11 +148,13 @@ h1 {
 
     .turn {
         width: 100%;
-    }
+    }   
 
     #fraseMatch {
-        height: auto; /* Imposta un'altezza per il contenitore */
-        overflow-y: auto; /* Abilita lo scrolling verticale */
+        height: auto;
+        /* Imposta un'altezza per il contenitore */
+        overflow-y: auto;
+        /* Abilita lo scrolling verticale */
     }
 
     #turnMessage,
@@ -98,5 +162,10 @@ h1 {
     #fraseMatch,
     #risultatoMatch {
         font-size: 16px;
+    }
+
+    .characterContainer img {
+        width: 130px;
+        height: 130px;
     }
 }

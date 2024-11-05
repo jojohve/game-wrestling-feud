@@ -141,7 +141,7 @@ function eseguiSceltaCpu() {
 
     // Salva la scelta della CPU
     turnHistory.push({ currentTurn, scelta: sceltaRandom });
-    document.getElementById('turnChoice').innerText = `La Cpu ha scelto il ${sceltaRandom}`;
+    document.getElementById('turnChoice').innerText = `La Cpu ha scelto il ${sceltaRandom}!`;
 
     mostraVaiButton();
 }
@@ -152,7 +152,7 @@ function eseguiScelta(choice) {
 
     // Salva la scelta del turno corrente
     turnHistory.push({ currentTurn, scelta: choice });
-    document.getElementById('turnChoice').innerText = `Hai scelto il ${choice}`;
+    document.getElementById('turnChoice').innerText = `Hai scelto il ${choice}!`;
 
     mostraVaiButton();
 }
