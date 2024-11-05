@@ -28,7 +28,7 @@
             border-radius: 10px;
             text-align: center;
             font-size: 18px;
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
@@ -74,8 +74,18 @@
                     style="color: rgba(0, 0, 0, 0.7);">vs</span> <strong style="color: red;">(CPU)</strong> <span
                     id="cpuCharacter"></span></p>
         </div>
+
         <div class="turn" style="display: grid; font-size: smaller;">
-            <span id="whatTurnItIs"></span>
+            <div class="characterContainer">
+                <div id="player-image">
+                    <img src="" alt="">
+                </div>
+                <span id="whatTurnItIs"></span>
+                <div id="cpu-image">
+                    <img src="" alt="">
+                </div>
+            </div>
+
             <span id="turnMessage"></span>
             <span id="storicoMatch"></span>
             <span id="turnChoice"></span>
