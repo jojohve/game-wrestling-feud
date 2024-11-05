@@ -99,9 +99,36 @@ function selectRandomCpu() {
 // Configura la selezione dei personaggi per PLAYER e CPU per tutta la partita
 setupCharacterSelection('player-grid', (name) => {
     selectedPlayerCharacter = name; // Memorizza il personaggio selezionato dal giocatore
+
+    // Trova l'elemento del personaggio selezionato
+    const playerCharacterElement = document.querySelector(`#player-grid .character[data-name="${name}"]`);
+    if (playerCharacterElement) {
+        // Recupera il percorso dell'immagine dal data attribute
+        const imgSrc = playerCharacterElement.getAttribute('data-img-src');
+        
+        // Salva sia il nome del personaggio sia il percorso dell'immagine nel localStorage
+        localStorage.setItem('selectedPlayerCharacter', name);
+        localStorage.setItem('selectedPlayerImageSrc', imgSrc);
+
+        console.log(`Personaggio giocatore selezionato: ${name}, Immagine salvata: ${imgSrc}`);
+    }
 });
+
 setupCharacterSelection('cpu-grid', (name) => {
     selectedCpuCharacter = name; // Memorizza il personaggio selezionato dalla CPU
+
+    // Trova l'elemento del personaggio selezionato
+    const cpuCharacterElement = document.querySelector(`#cpu-grid .character[data-name="${name}"]`);
+    if (cpuCharacterElement) {
+        // Recupera il percorso dell'immagine dal data attribute
+        const imgSrc = cpuCharacterElement.getAttribute('data-img-src');
+        
+        // Salva sia il nome del personaggio sia il percorso dell’immagine nel localStorage
+        localStorage.setItem('selectedCpuCharacter', name);
+        localStorage.setItem('selectedCpuImageSrc', imgSrc);
+
+        console.log(`Personaggio CPU selezionato: ${name}, Immagine salvata: ${imgSrc}`);
+    }
 });
 
 // Aggiungi l'evento click per il personaggio "Casuale" quando si clicca
@@ -126,4 +153,27 @@ document.getElementById('confirm-button').addEventListener('click', () => {
 function recordTurn(turnResult) {
     turnHistory.push(turnResult); // Aggiunge il risultato del turno allo storico
     localStorage.setItem('turnHistory', JSON.stringify(turnHistory)); // Salva lo storico nel localStorage
+}
+
+function displaySelectedCharacters() {
+    // Recupera l'URL delle immagini dei personaggi dal localStorage
+    const playerImageSrc = localStorage.getItem('selectedPlayerImageSrc');
+    const cpuImageSrc = localStorage.getItem('selectedCpuImageSrc');
+
+    // Recupera i contenitori delle immagini nella pagina
+    const playerImageElement = document.getElementById('player-image');
+    const cpuImageElement = document.getElementById('cpu-image');
+
+    // Imposta gli src delle immagini se i percorsi sono disponibili
+    if (playerImageSrc) {
+        playerImageElement.src = playerImageSrc;
+    } else {
+        console.warn("Immagine del personaggio del giocatore non trovata.");
+    }
+
+    if (cpuImageSrc) {
+        cpuImageElement.src = cpuImageSrc;
+    } else {
+        console.warn("Immagine del personaggio della CPU non trovata.");
+    }
 }
