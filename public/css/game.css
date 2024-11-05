@@ -49,12 +49,12 @@ h1 {
 }
 
 .characterContainer #player-image {
-  border: 5px solid rgba(0, 0, 255, 0.7);
+  border: 5px double rgba(0, 0, 255, 0.7);
   box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
 }
 
 .characterContainer #cpu-image {
-  border: 5px solid rgba(255, 0, 0, 0.7);
+  border: 5px double rgba(255, 0, 0, 0.7);
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
 }
 
