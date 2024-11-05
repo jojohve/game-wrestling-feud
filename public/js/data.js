@@ -50,6 +50,10 @@ function selectRandomPlayer() {
 
     const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
     const characterName = randomCharacter.getAttribute('data-name');
+    const audioSrc = randomCharacter.getAttribute('data-audio-src'); // Recupera il percorso audio
+
+    // Riproduci l'audio del personaggio
+    playCharacterAudio(audioSrc);
 
     // Recupera il percorso dell'immagine dal data attribute
     const imgSrc = randomCharacter.getAttribute('data-img-src');
@@ -91,6 +95,10 @@ function selectRandomCpu() {
 
     const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
     const characterName = randomCharacter.getAttribute('data-name');
+    const audioSrc = randomCharacter.getAttribute('data-audio-src'); // Recupera il percorso audio
+
+    // Riproduci l'audio del personaggio
+    playCharacterAudio(audioSrc);
 
     // Recupera il percorso dell'immagine dal data attribute
     const imgSrc = randomCharacter.getAttribute('data-img-src');

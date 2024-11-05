@@ -52,7 +52,8 @@ h1 {
 .character-display {
     margin-top: 20px;
     padding: 15px;
-    background-color: rgb(245, 245, 245);
+    background: url(../assets/images/istockphoto-1454610054-612x612.jpg);
+    background-size: cover;
     border-radius: 8px;
     text-align: center;
     font-size: 20px;
@@ -106,6 +107,7 @@ h1 {
     font-family: pgfont3;
     cursor: default;
     font-size: larger;
+    color: white;
 }
 
 #playerImageSrc,
@@ -124,6 +126,16 @@ h1 {
 #storicoMatch,
 #whatTurnItIs {
     font-family: pgfont4;
+}
+
+#whatTurnItIs {
+    font-weight: bold;
+    margin-top: 20px;
+    text-shadow: 4px 4px 6px rgba(66, 68, 90, 1);
+}
+
+.characterContainer {
+    gap: 50px;
 }
 
 @media screen and (max-width: 500px) {
