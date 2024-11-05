@@ -71,15 +71,14 @@ function match() {
                 currentIndex++;
 
                 // Scorri fino all'ultima frase generata
-                fraseMatch.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                fraseMatch.lastElementChild.scrollIntoView({ behavior: 'smooth' });
             } else {
                 clearInterval(intervalId);
 
                 continuaButton.style.display = 'block';
                 continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
-
-                updateScoreDisplay();
                 alert("Uno! Due! Tre! Finisce il match!");
+                updateScoreDisplay();
                 terminaMatch(vincitore);
             }
         };
@@ -119,6 +118,7 @@ function match() {
     }
 }
 
+// Configura l'audio
 const ringTheBell = new Audio('../assets/audio/wwe-bell.mp3');
 
 function playBell() {
@@ -128,7 +128,24 @@ function playBell() {
     });
 }
 
-function showAlertAndPlaySound(message) {
-    alert(message);
-    playBell();
+// Funzione per mostrare l'alert personalizzato
+function showCustomAlert(message) {
+    const customAlert = document.getElementById('customAlert');
+    const alertMessage = document.getElementById('alertMessage');
+    const alertOkButton = document.getElementById('alertOkButton');
+
+    // Imposta il messaggio dell'alert
+    alertMessage.textContent = message;
+
+    // Mostra l'alert personalizzato
+    customAlert.style.visibility = 'visible';
+
+    // Aggiungi un evento per il bottone "OK"
+    alertOkButton.onclick = () => {
+        // Nascondi l'alert
+        customAlert.style.visibility = 'hidden';
+        
+        // Riproduci l'audio
+        playBell();
+    };
 }

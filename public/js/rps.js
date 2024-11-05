@@ -17,6 +17,8 @@ function playGame(playerChoice) {
 
     if (playerChoice === cpuChoice) {
         result = "È un pareggio!";
+        playerDisplay.style.display = 'block'; // Mostra
+        cpuDisplay.style.display = 'block'; // Mostra
     } else {
         switch (playerChoice) {
             case "sasso":

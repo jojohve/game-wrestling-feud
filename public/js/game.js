@@ -36,10 +36,10 @@ function displaySelectedCharacters() {
     // Recupera i dati dal localStorage
     const playerCharacter = localStorage.getItem('selectedPlayerCharacter');
     const playerImageSrc = localStorage.getItem('selectedPlayerImageSrc');
-    
+
     const cpuCharacter = localStorage.getItem('selectedCpuCharacter');
     const cpuImageSrc = localStorage.getItem('selectedCpuImageSrc');
-    
+
     // Associa i dati agli elementi HTML della pagina
     const playerImageElement = document.getElementById('player-image');
     const cpuImageElement = document.getElementById('cpu-image');
@@ -65,7 +65,7 @@ function salvaDati() {
     localStorage.setItem('cpuScore', cpuScore);
     localStorage.setItem('totalMatches', totalMatches);
 
-    localStorage.setItem('turnHistory', JSON.stringify(turnHistory));   
+    localStorage.setItem('turnHistory', JSON.stringify(turnHistory));
     localStorage.setItem('playerGamePoints', playerGamePoints);
     localStorage.setItem('cpuGamePoints', cpuGamePoints);
 
@@ -183,20 +183,35 @@ function fineGioco() {
     salvaDati();
 
     // Controlla se il gioco è finito
-    if (playerGamePoints < 2 && cpuGamePoints < 2) {
-        iniziaTurno(); // Avvia il nuovo turno solo se il gioco non è finito
+    if (playerGamePoints >= 2 || cpuGamePoints >= 2) {
+        terminaRivalità(); // Se la rivalità è terminata, non avviare un nuovo turno
     } else {
-        terminaRivalità(); // Controlla se la rivalità è terminata
+        iniziaTurno(); // Altrimenti, avvia il nuovo turno
     }
 }
 
 function terminaRivalità() {
     if (playerGamePoints >= 2) {
-        alert("Congratulazioni! Hai vinto la rivalità!");
+        showWinAlert("Congratulazioni! Hai vinto la rivalità!");
     } else if (cpuGamePoints >= 2) {
-        alert("Peccato! La CPU ha vinto la rivalità!");
+        showLoseAlert("Peccato! La CPU ha vinto la rivalità!");
     }
-    resetRivalry();
+}
+
+function showWinAlert(message) {
+    document.getElementById('winAlert').style.display = 'flex';
+    document.getElementById('winMessage').innerText = message;
+    document.getElementById('winOkButton').onclick = function() {
+        resetRivalry();
+    };
+}
+
+function showLoseAlert(message) {
+    document.getElementById('loseAlert').style.display = 'flex';
+    document.getElementById('loseMessage').innerText = message;
+    document.getElementById('loseOkButton').onclick = function() {
+        resetRivalry();
+    };
 }
 
 function resetRivalry() {
@@ -212,6 +227,16 @@ function resetRivalry() {
     cpuGamePoints = 0;
 
     result = "";
+
+    // Resetta anche i dati nel localStorage
+    localStorage.removeItem('playerScore');
+    localStorage.removeItem('cpuScore');
+    localStorage.removeItem('totalMatches');
+    localStorage.removeItem('turnHistory');
+    localStorage.removeItem('playerGamePoints');
+    localStorage.removeItem('cpuGamePoints');
+    localStorage.removeItem('currentTurn');
+    localStorage.removeItem('result');
 
     console.log("Rivalità resettata. Punteggi: ", playerGamePoints, cpuGamePoints);
     window.location.href = '../index.html';

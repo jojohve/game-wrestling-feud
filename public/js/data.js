@@ -16,9 +16,22 @@ function setupCharacterSelection(gridId, onSelect) {
 
             // Memorizza il nome del personaggio selezionato
             const characterName = character.getAttribute('data-name');
+            const audioSrc = character.getAttribute('data-audio-src');
+
+            // Riproduci l'audio del personaggio
+            playCharacterAudio(audioSrc);
+
             onSelect(characterName); // Chiama la funzione di callback
             console.log(gridId === 'player-grid' ? 'Personaggio Player selezionato:' : 'Personaggio CPU selezionato:', characterName);
         });
+    });
+}
+
+// Funzione per riprodurre l'audio del personaggio
+function playCharacterAudio(audioSrc) {
+    const audio = new Audio(audioSrc);
+    audio.play().catch(error => {
+        console.error("Errore durante la riproduzione dell'audio:", error);
     });
 }
 
