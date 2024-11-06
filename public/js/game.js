@@ -199,17 +199,23 @@ function terminaRivalità() {
 }
 
 function showWinAlert(message) {
+    // Calcola il punteggio totale
+    const totalScore = playerScore * playerGamePoints;
+
     document.getElementById('winAlert').style.display = 'flex';
-    document.getElementById('winMessage').innerText = message;
-    document.getElementById('winOkButton').onclick = function() {
+    document.getElementById('winMessage').innerText = `${message}\nPunteggio totale: ${totalScore}`;
+    document.getElementById('winOkButton').onclick = function () {
         resetRivalry();
     };
 }
 
 function showLoseAlert(message) {
+    // Calcola il punteggio totale
+    const totalScore = playerScore * playerGamePoints;
+
     document.getElementById('loseAlert').style.display = 'flex';
-    document.getElementById('loseMessage').innerText = message;
-    document.getElementById('loseOkButton').onclick = function() {
+    document.getElementById('loseMessage').innerText = `${message}\nPunteggio totale: ${totalScore}`;
+    document.getElementById('loseOkButton').onclick = function () {
         resetRivalry();
     };
 }
