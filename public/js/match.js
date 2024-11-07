@@ -120,6 +120,7 @@ function match() {
 
 // Configura l'audio
 const ringTheBell = new Audio('../assets/audio/wwe-bell.mp3');
+const matchSound = new Audio('../assets/audio/wrestling-crowd-popcheer-made-with-Voicemod.mp3');
 const pinFall = new Audio('../assets/audio/wwe-referee-count-made-with-Voicemod.mp3');
 
 function playBell() {
@@ -127,9 +128,16 @@ function playBell() {
     ringTheBell.play().catch(error => {
         console.error("Impossibile riprodurre il suono:", error);
     });
+
+    ringTheBell.volume = 0.5;
+    matchSound.volume = 0.3;
+    matchSound.play();
 }
 
 function playPinFall() {
+    matchSound.pause(); // Ferma la canzone
+    matchSound.currentTime = 0; // Riporta la canzone all'inizio
+
     pinFall.play().catch(error => {
         console.error("Impossibile riprodurre il suono:", error);
     });

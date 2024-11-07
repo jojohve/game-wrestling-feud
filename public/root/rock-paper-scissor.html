@@ -99,6 +99,39 @@
             color: rgb(255, 55, 55);
         }
 
+        .custom-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            z-index: 10;
+            /* Nascondi inizialmente */
+        }
+
+        .alert-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #alertOkButton {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: gold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
         /* Media query for smaller screens */
         @media (max-width: 600px) {
             .choices {
@@ -211,6 +244,13 @@
         </div>
     </div>
 
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <p id="alertMessage"></p>
+            <button id="alertOkButton">OK</button>
+        </div>
+    </div>
+
     <script src="../js/localStorage.js"></script>
     <script src="../js/data.js"></script>
     <script src="../js/rps.js"></script>
@@ -220,6 +260,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             displaySelectedCharacters();
+            showCustomAlert("La battaglia ha inizio!");
             playGame();
         });
     </script>

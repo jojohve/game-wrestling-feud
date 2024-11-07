@@ -246,6 +246,10 @@ function updateBattleGround(playerCharacter, userPhrase, cpuCharacter, cpuRespon
 function checkForWinner() {
       if (wrestler1Score >= 15 || wrestler2Score >= 15) {
             const winner = wrestler1Score >= 15 ? playerCharacter : cpuCharacter;
+            
+            promoSong.pause();
+            promoSong.currentTime = 0; // Opzionale, per riavviare il suono alla prossima riproduzione
+
             alert(`${winner} ha vinto il promo!`);
 
             // Mostra il pulsante "Continua"
@@ -311,6 +315,35 @@ function disableChoices() {
                   choiceElement.style.opacity = '0.5'; // Rendi visivamente non selezionabile
             }
       }
+}
+
+const promoSong = new Audio('../assets/audio/the_hour_of_reckoning_proud_music_preview.mp3');
+
+function play() {
+      promoSong.volume = 0.2;
+      promoSong.play().catch(error => console.error("Impossibile riprodurre il suono:", error));
+}
+
+// Funzione per mostrare l'alert personalizzato
+function showCustomAlert(message) {
+      const customAlert = document.getElementById('customAlert');
+      const alertMessage = document.getElementById('alertMessage');
+      const alertOkButton = document.getElementById('alertOkButton');
+
+      // Imposta il messaggio dell'alert
+      alertMessage.textContent = message;
+
+      // Mostra l'alert personalizzato
+      customAlert.style.visibility = 'visible';
+
+      // Aggiungi un evento per il bottone "OK"
+      alertOkButton.onclick = () => {
+            // Nascondi l'alert
+            customAlert.style.visibility = 'hidden';
+
+            // Riproduci l'audio
+            play();
+      };
 }
 
 promoBattle();
