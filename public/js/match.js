@@ -77,7 +77,7 @@ function match() {
 
                 continuaButton.style.display = 'block';
                 continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
-                alert("Uno! Due! Tre! Finisce il match!");
+                showCustomAlert2("Uno! Due! Tre! Finisce il match!");
                 updateScoreDisplay();
                 terminaMatch(vincitore);
             }
@@ -120,10 +120,17 @@ function match() {
 
 // Configura l'audio
 const ringTheBell = new Audio('../assets/audio/wwe-bell.mp3');
+const pinFall = new Audio('../assets/audio/wwe-referee-count-made-with-Voicemod.mp3');
 
 function playBell() {
     console.log("Riproduzione del suono della campana.");
     ringTheBell.play().catch(error => {
+        console.error("Impossibile riprodurre il suono:", error);
+    });
+}
+
+function playPinFall() {
+    pinFall.play().catch(error => {
         console.error("Impossibile riprodurre il suono:", error);
     });
 }
@@ -144,8 +151,46 @@ function showCustomAlert(message) {
     alertOkButton.onclick = () => {
         // Nascondi l'alert
         customAlert.style.visibility = 'hidden';
-        
+
         // Riproduci l'audio
         playBell();
+    };
+}
+
+function showCustomAlert2(message) {
+    const customAlert = document.getElementById('customAlert');
+    const alertMessage = document.getElementById('alertMessage');
+    const alertOkButton = document.getElementById('alertOkButton');
+
+    // Imposta il messaggio dell'alert
+    alertMessage.textContent = message;
+
+    // Mostra l'alert personalizzato
+    customAlert.style.visibility = 'visible';
+
+    // Aggiungi un evento per il bottone "OK"
+    alertOkButton.onclick = () => {
+        let countdown = 3; // Countdown di 3 secondi
+        alertOkButton.disabled = true; // Disabilita il pulsante "OK" per il countdown
+
+        // Riproduci l'audio o qualsiasi altra azione desiderata
+        playPinFall();
+
+        // Aggiorna il testo del bottone per mostrare il countdown
+        alertOkButton.textContent = `Ok (${countdown})`;
+
+        // Esegui un intervallo di 1 secondo per aggiornare il countdown
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            alertOkButton.textContent = `Ok (${countdown})`;
+
+            // Quando il countdown raggiunge zero, nasconde l'alert e ferma l'intervallo
+            if (countdown === 0) {
+                clearInterval(countdownInterval); // Ferma il countdown
+                customAlert.style.visibility = 'hidden'; // Nascondi l'alert
+                alertOkButton.textContent = 'Ok'; // Resetta il testo del bottone
+                alertOkButton.disabled = false; // Rende di nuovo il pulsante attivo
+            }
+        }, 1000);
     };
 }
