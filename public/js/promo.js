@@ -246,11 +246,11 @@ function updateBattleGround(playerCharacter, userPhrase, cpuCharacter, cpuRespon
 function checkForWinner() {
       if (wrestler1Score >= 15 || wrestler2Score >= 15) {
             const winner = wrestler1Score >= 15 ? playerCharacter : cpuCharacter;
-            
+
             promoSong.pause();
             promoSong.currentTime = 0; // Opzionale, per riavviare il suono alla prossima riproduzione
 
-            alert(`${winner} ha vinto il promo!`);
+            showCustomAlert2(`${winner} ha vinto il promo!`);
 
             // Mostra il pulsante "Continua"
             continuaButton.style.display = 'block'; // Mostra il pulsante
@@ -343,6 +343,19 @@ function showCustomAlert(message) {
 
             // Riproduci l'audio
             play();
+      };
+}
+
+function showCustomAlert2(message) {
+      const customAlert = document.getElementById('customAlert');
+      const alertMessage = document.getElementById('alertMessage');
+      const alertOkButton = document.getElementById('alertOkButton');
+
+      alertMessage.textContent = message;
+      customAlert.style.visibility = 'visible';
+
+      alertOkButton.onclick = () => {
+            customAlert.style.visibility = 'hidden';
       };
 }
 

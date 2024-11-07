@@ -52,7 +52,7 @@ function startTimer() {
       clearInterval(timer);
       cpuScore += 5;
       salvaDati();
-      alert("Tempo scaduto! La CPU ha vinto.");
+      showCustomAlert2("Tempo scaduto! La CPU ha vinto.");
       turnMessage.innerHTML = `Punteggio: ${playerCharacter} ${playerScore}, ${cpuCharacter} ${cpuScore}`;
       continuaButton.style.display = 'block';
       continuaButton.scrollIntoView({ behavior: 'smooth' });
@@ -91,7 +91,10 @@ function memory() {
             });
 
             if (document.querySelectorAll('.boxMatch').length === selectedImages.length) {
-              alert("Hai vinto!");
+              showCustomAlert2("Congratulazioni! Hai vinto!");
+              memorySong.pause(); // Ferma la canzone
+              memorySong.currentTime = 0; // Riporta la canzone all'inizio
+        
               clearInterval(timer);
               playerScore += 5;
               salvaDati();
@@ -127,5 +130,18 @@ function showCustomAlert(message) {
     customAlert.style.visibility = 'hidden';
     play();
     startTimer(); // Avvia il timer al click del bottone OK
+  };
+}
+
+function showCustomAlert2(message) {
+  const customAlert = document.getElementById('customAlert');
+  const alertMessage = document.getElementById('alertMessage');
+  const alertOkButton = document.getElementById('alertOkButton');
+
+  alertMessage.textContent = message;
+  customAlert.style.visibility = 'visible';
+
+  alertOkButton.onclick = () => {
+    customAlert.style.visibility = 'hidden';
   };
 }

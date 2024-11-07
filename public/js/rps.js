@@ -67,7 +67,7 @@ function playGame(playerChoice) {
 
 function determinaRisultato() {
     if (playerScoreMG >= 3) {
-        alert("Congratulazioni! Hai vinto!");
+        showCustomAlert2("Congratulazioni! Hai vinto!");
 
         battleSong.pause(); // Ferma la canzone
         battleSong.currentTime = 0; // Riporta la canzone all'inizio
@@ -77,7 +77,7 @@ function determinaRisultato() {
         continuaButton.style.display = 'block'; // Mostra il pulsante
         continuaButton.scrollIntoView({ behavior: 'smooth' }); // Scrolla fino al pulsante
     } else if (cpuScoreMG >= 3) {
-        alert("La CPU ha vinto!");
+        showCustomAlert2("La CPU ha vinto!");
 
         battleSong.pause(); // Ferma la canzone
         battleSong.currentTime = 0; // Riporta la canzone all'inizio
@@ -118,3 +118,16 @@ function showCustomAlert(message) {
         play();
     };
 }
+
+function showCustomAlert2(message) {
+    const customAlert = document.getElementById('customAlert');
+    const alertMessage = document.getElementById('alertMessage');
+    const alertOkButton = document.getElementById('alertOkButton');
+  
+    alertMessage.textContent = message;
+    customAlert.style.visibility = 'visible';
+  
+    alertOkButton.onclick = () => {
+      customAlert.style.visibility = 'hidden';
+    };
+  }
