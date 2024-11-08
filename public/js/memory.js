@@ -54,6 +54,7 @@ function startTimer() {
       salvaDati();
       showCustomAlert2("Tempo scaduto! La CPU ha vinto.");
       turnMessage.innerHTML = `Punteggio: ${playerCharacter} ${playerScore}, ${cpuCharacter} ${cpuScore}`;
+      
       continuaButton.style.display = 'block';
       continuaButton.scrollIntoView({ behavior: 'smooth' });
     } else {

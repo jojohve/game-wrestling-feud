@@ -37,6 +37,10 @@
             font-size: 20px;
         }
 
+        #intro {
+            font-weight: bold;
+        }
+
         /* Stile del pulsante */
         #chiediAvince {
             padding: 10px 15px;
@@ -241,6 +245,8 @@
             <span id="intro">entri nell'uffico di Vince..</span>
             <span id="message">Vince McMahon: Cosa? Vuoi il rinnovo del contratto?</span>
 
+            <span id="response">Vince McMahon: </span>
+
             <div id="gameContainer">
                 <h4>Contratta e poi scegli l'affare!</h4>
                 <span id="turnDisplay"></span>
@@ -251,8 +257,6 @@
                 </label>
                 <button onclick="confirmChoice()" id="chiediAvince">CONTRATTA</button>
             </div>
-
-            <span id="response">Vince McMahon: </span>
 
             <div class="propose" id="roleResult">
                 <div class="card">

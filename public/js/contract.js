@@ -47,6 +47,7 @@ function confirmChoice() {
     if (turn > maxTurns) {
         document.getElementById("gameContainer").style.visibility = 'hidden';
         document.getElementById("response").textContent = "Vince McMahon: La partita è finita. Scegli il ruolo che credi di meritare:";
+        roleResult.scrollIntoView({ behavior: 'smooth' });
         document.getElementById("chiediAvince").style.visibility = 'hidden';
         return;
     }
@@ -97,17 +98,20 @@ function selectRole(role) {
     const randomIndex = Math.floor(Math.random() * remainingRoles.length);
     vinceChoice = remainingRoles[randomIndex];
 
-    alert(`Hai selezionato il ruolo: ${role}, Vince pensa che tu possa essere al massimo un ${vinceChoice}`);
+    alert(`Hai selezionato il ruolo: ${role}, Vince pensa che tu possa essere al massimo un ${vinceChoice}`);    
     dealSong.pause();
     dealSong.currentTime = 0;
 
     if (role.trim().toLowerCase() === vinceChoice.trim().toLowerCase()) {
-        document.getElementById("response").textContent = "Vince McMahon: Ti rinnoverò il contratto!";
+        document.getElementById("response").textContent = "Vince McMahon: Va bene, ti rinnoverò il contratto!";
+        document.getElementById("response").style.fontSize = '24px';
         playerScore += 10;
     } else {
         document.getElementById("response").textContent = `Vince McMahon: YOU'RE FIRED!`;
+        document.getElementById("response").style.fontSize = '24px';
         cpuScore += 10;
     }
+    response.scrollIntoView({ behavior: 'smooth' });
     salvaDati();
 
     document.getElementById("roleResult").style.display = 'none';
