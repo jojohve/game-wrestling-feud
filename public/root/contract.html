@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrestling Feud Generator! Contract</title>
+    <link rel="stylesheet" href="../css/game.css">
+    <style>
+        .choices {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .message {
+            display: block;
+            font-size: 20px;
+        }
+
+        input[type="range"] {
+            display: block;
+            position: relative;
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::before,
+        input[type="range"]::after {
+            position: absolute;
+            display: inline-block;
+            top: -5px;
+        }
+
+        input[type="range"]::before {
+            content: attr(min);
+            left: 0;
+            transform: translateX(calc(-100% -5px));
+        }
+
+        input[type="range"]::after {
+            content: attr(max);
+            right: 0;
+            transform: translateX(calc(-100% -5px));
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            background-color: #222;
+            height: 5px;
+            border-radius: 3px;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            background-color: aqua;
+            width: 6px;
+            height: 20px;
+            border-radius: 3px;
+            appearance: none;
+            margin: -7px 0 0 0;
+        }
+
+        .custom_range_slider {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="result">
+        <div class="turn" style="display: grid; font-size: smaller;">
+            <div class="character-display">
+                <div class="characterContainer">
+                    <div id="playerImageSrc">
+                        <strong style="color: blue;">Player</strong>
+                        <img id="player-image" src="" alt="Immagine del giocatore" />
+                        <span id="playerCharacter"></span>
+                    </div>
+
+                    <div id="cpuImageSrc">
+                        <strong style="color: red;">CPU</strong>
+                        <img id="cpu-image" src="" alt="Immagine della CPU" />
+                        <span id="cpuCharacter"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contract">
+            <span id="whatTurnItIs"></span>
+            <div id="turnMessage"></div>
+            <div id="storicoMatch"></div>
+
+            <div class="choices">
+                <label class="custom_range_slider">
+                    <input type="range" id="stipendio" name="stipendio" value="0" max="100" min="0" />
+                    <label for="stipendio">Stipendio</label>
+                </label>
+            </div>
+            <button style="margin-bottom: 30px;">CONFERMA</button>
+
+            <span class="message">Vince McMahon: Ciao vuoi il rinnovo del contratto? Spara una cifra</span>
+            <div class="response"></div>
+
+            <div class="propose">
+                <button>JOBBER</button>
+                <button>MID CARDER</button>
+                <button>UPPER CARDER</button>
+                <button>MAIN EVENTER</button>
+                <button>LEGEND</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <p id="alertMessage"></p>
+            <button id="alertOkButton">OK</button>
+        </div>
+    </div>
+
+    <script src="../js/localStorage.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/contract.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/message.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            displaySelectedCharacters();
+            showCustomAlert("Ottieni il contratto migliore!");
+            deal();
+        });
+    </script>
+</body>
+
+</html>
