@@ -129,13 +129,14 @@ function mostraScelteGiocatore() {
             <button onclick="eseguiScelta('promo')">Promo</button>
             <button onclick="eseguiScelta('memory')">Memory</button>
             <button onclick="eseguiScelta('rock-paper-scissor')">Rock-Paper-Scissor</button>
+            <button onclick="eseguiScelta('contratto')">Contratto</button>
         `;
 }
 
 function eseguiSceltaCpu() {
     document.getElementById('azioniDiv').style.display = 'none';
 
-    const scelteCpu = ['match', 'promo', 'memory', 'rock-paper-scissor'];
+    const scelteCpu = ['match', 'promo', 'memory', 'rock-paper-scissor', 'contratto'];
     const sceltaRandom = scelteCpu[Math.floor(Math.random() * scelteCpu.length)];
     sceltaCorrente = sceltaRandom; // Salva la scelta nella variabile globale
 
@@ -172,6 +173,8 @@ function vaiAllaScelta() {
         window.location.href = 'memory.html';
     } else if (sceltaCorrente === 'rock-paper-scissor') {
         window.location.href = 'rock-paper-scissor.html';
+    } else if (sceltaCorrente === 'contratto') {
+        window.location.href = 'contract.html';
     }
     if (playerGamePoints < 2 && cpuGamePoints < 2) { // Esempio di condizione
         nextTurn(); // Chiama la funzione nextTurn()

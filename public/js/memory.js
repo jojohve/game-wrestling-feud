@@ -50,7 +50,7 @@ function startTimer() {
       memorySong.currentTime = 0; // Riporta la canzone all'inizio
 
       clearInterval(timer);
-      cpuScore += 5;
+      cpuScore += 10;
       salvaDati();
       showCustomAlert2("Tempo scaduto! La CPU ha vinto.");
       turnMessage.innerHTML = `Punteggio: ${playerCharacter} ${playerScore}, ${cpuCharacter} ${cpuScore}`;
@@ -96,7 +96,7 @@ function memory() {
               memorySong.currentTime = 0; // Riporta la canzone all'inizio
         
               clearInterval(timer);
-              playerScore += 5;
+              playerScore += 10;
               salvaDati();
               turnMessage.innerHTML = `Punteggio: ${playerCharacter} ${playerScore}, ${cpuCharacter} ${cpuScore}`;
               continuaButton.style.display = 'block';

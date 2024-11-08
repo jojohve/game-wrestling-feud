@@ -138,12 +138,12 @@ function match() {
     function aggiornaPunteggi(vincitore) {
         if (risultatoMatchElement) {
             if (vincitore === playerCharacter) {
-                playerScore += 5;
+                playerScore += 10;
                 cpuScore -= 5;
                 playerGamePoints += 1;
             } else {
                 playerScore -= 5;
-                cpuScore += 5;
+                cpuScore += 10;
                 cpuGamePoints += 1;
             }
         }

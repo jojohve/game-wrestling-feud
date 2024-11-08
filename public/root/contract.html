@@ -7,15 +7,79 @@
     <title>Wrestling Feud Generator! Contract</title>
     <link rel="stylesheet" href="../css/game.css">
     <style>
-        .choices {
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Font per una migliore leggibilità */
         }
 
-        .message {
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../assets/images/office.jpg') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px) brightness(0.8);
+            z-index: -1;
+        }
+
+        #gameContainer {
+            display: grid;
+            justify-content: center;
+            margin: 50px;
+        }
+
+        #message,
+        #response {
             display: block;
+            margin: 10px;
             font-size: 20px;
+        }
+
+        #intro {
+            display: block;
+            margin: 20px;
+        }
+
+        #chiediAvince {
+            padding: 10px 15px;
+            background-color: gold;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #chiediAvince:hover {
+            background-color: #e2c938;
+        }
+
+        .propose {
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(5, minmax(100px, 1fr)); /* Ogni card avrà una larghezza minima di 100px */
+        }
+
+        .card {
+            display: block;
+            width: 125px;
+            /* Imposta una larghezza fissa per le card */
+            height: 100px;
+            /* Imposta un'altezza fissa per le card */
+            background-color: white;
+            border: 1px solid black;
+        }
+
+        .card label {
+            font-size: 14px;
+        }
+
+        .card button {
+            font-size: 24px;
         }
 
         input[type="range"] {
@@ -24,6 +88,7 @@
             outline: none;
             appearance: none;
             cursor: pointer;
+            width: 100%;
         }
 
         input[type="range"]::before,
@@ -64,6 +129,73 @@
         .custom_range_slider {
             position: relative;
         }
+
+        .custom_range_slider.bubble {
+            background-color: azure;
+            color: white;
+            position: absolute;
+            left: 0;
+            top: 20px;
+            padding: 5px 7px;
+            border-radius: 3px;
+            z-index: 999;
+            display: none;
+        }
+
+        .custom_range_slider input[type="range"]:hover+.bubble,
+        .custom_range_slider input[type="range"]:focus+.bubble {
+            display: inline-block;
+        }
+
+        #continuaButton {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #continuaButton:hover {
+            background-color: #0056b3;
+        }
+
+        .custom-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            z-index: 10;
+            /* Nascondi inizialmente */
+        }
+
+        .alert-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #alertOkButton {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: gold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
 </head>
 
@@ -93,25 +225,47 @@
             <div id="turnMessage"></div>
             <div id="storicoMatch"></div>
 
-            <div class="choices">
+            <span id="intro">entri nell'uffico di Vince..</span>
+            <span id="message">Vince McMahon: Cosa? Vuoi il rinnovo del contratto?</span>
+
+            <div id="gameContainer">
+                <h4>Contratta e poi scegli l'affare!</h4>
+                <span id="turnDisplay"></span>
+                <span id="turnDescription"></span>
+
                 <label class="custom_range_slider">
-                    <input type="range" id="stipendio" name="stipendio" value="0" max="100" min="0" />
-                    <label for="stipendio">Stipendio</label>
+                    <input type="range" min="1" max="100" value="50" id="rangeInput" />
                 </label>
+                <button onclick="confirmChoice()" id="chiediAvince">CONTRATTA</button>
             </div>
-            <button style="margin-bottom: 30px;">CONFERMA</button>
 
-            <span class="message">Vince McMahon: Ciao vuoi il rinnovo del contratto? Spara una cifra</span>
-            <div class="response"></div>
+            <span id="response">Vince McMahon: </span>
 
-            <div class="propose">
-                <button>JOBBER</button>
-                <button>MID CARDER</button>
-                <button>UPPER CARDER</button>
-                <button>MAIN EVENTER</button>
-                <button>LEGEND</button>
+            <div class="propose" id="roleResult">
+                <div class="card">
+                    <label>Contratto da</label>
+                    <button id="jobber" onclick="selectRole('JOBBER')">JOBBER</button>
+                </div>
+                <div class="card">
+                    <label>Contratto da</label>
+                    <button id="midCarder" onclick="selectRole('MID CARDER')">MID CARDER</button>
+                </div>
+                <div class="card">
+                    <label>Contratto da</label>
+                    <button id="upperCarder" onclick="selectRole('UPPER CARDER')">UPPER CARDER</button>
+                </div>
+                <div class="card">
+                    <label>Contratto da</label>
+                    <button id="mainEventer" onclick="selectRole('MAIN EVENTER')">MAIN EVENTER</button>
+                </div>
+                <div class="card">
+                    <label>Contratto da</label>
+                    <button id="legend" onclick="selectRole('LEGEND')">LEGEND</button>
+                </div>
             </div>
         </div>
+
+        <button id="continuaButton" style="display: none;" onclick="continua()">Continua</button>
     </div>
 
     <div id="customAlert" class="custom-alert">
@@ -130,8 +284,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             displaySelectedCharacters();
-            showCustomAlert("Ottieni il contratto migliore!");
-            deal();
+            showCustomAlert2("Ottieni il contratto migliore!");
+            updateTurn();
         });
     </script>
 </body>
