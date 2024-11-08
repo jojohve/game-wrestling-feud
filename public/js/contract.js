@@ -96,6 +96,8 @@ function selectRole(role) {
     vinceChoice = remainingRoles[randomIndex];
 
     alert(`Hai selezionato il ruolo: ${role}, Vince pensa che tu possa essere al massimo un ${vinceChoice}`);
+    dealSong.pause(); // Ferma la canzone
+    dealSong.currentTime = 0; // Riporta la canzone all'inizio
 
     // Controlla se la scelta del giocatore corrisponde alla scelta di Vince McMahon
     if (role.trim().toLowerCase() === vinceChoice.trim().toLowerCase()) {
@@ -113,7 +115,14 @@ function selectRole(role) {
     continuaButton.scrollIntoView({ behavior: 'smooth' });
 }
 
-function showCustomAlert2(message) {
+const dealSong = new Audio('../assets/audio/upbeat-quirky-background-jazz-164955.mp3');
+
+function play() {
+    dealSong.volume = 0.4;
+    dealSong.play().catch(error => console.error("Impossibile riprodurre il suono:", error));
+}
+
+function showCustomAlert(message) {
     const customAlert = document.getElementById('customAlert');
     const alertMessage = document.getElementById('alertMessage');
     const alertOkButton = document.getElementById('alertOkButton');
@@ -123,6 +132,7 @@ function showCustomAlert2(message) {
 
     alertOkButton.onclick = () => {
         customAlert.style.visibility = 'hidden';
+        play();
     };
 }
 
