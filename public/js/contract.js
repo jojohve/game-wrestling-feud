@@ -33,13 +33,23 @@ function confirmChoice() {
 
     if (difference <= allowedDifference) {
         pressioneMcMahon -= 20;
-        console.log("Differenza: " + difference + ", scelta di Vince: " + vinceMcMahonChoice + ", scelta tua: " + playerChoice);
+    
+        // Imposta il contenuto dell'elemento "message" con i due paragrafi
+        document.getElementById("message").innerHTML = `
+            <p>Scelta di Vince: ${vinceMcMahonChoice}, tua scelta: ${playerChoice}</p>
+            <p>Differenza: ${difference}</p>
+        `;
+    
         document.getElementById("response").textContent = `Turno ${turn}: Vince McMahon: Ci sai fare, andiamo avanti!`;
     } else {
-        console.log("Differenza: " + difference + ", scelta di Vince: " + vinceMcMahonChoice + ", scelta tua: " + playerChoice);
+        document.getElementById("message").innerHTML = `
+            <p>Scelta di Vince: ${vinceMcMahonChoice}, tua scelta: ${playerChoice}</p>
+            <p>Differenza: ${difference}</p>
+        `;
+    
         document.getElementById("response").textContent = `Turno ${turn}: Vince McMahon: Che credi che regali i soldi?`;
     }
-
+    
     turn++;
     updateTurn();
     updateRoleButtons(pressioneMcMahon);
