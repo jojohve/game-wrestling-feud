@@ -114,7 +114,7 @@ function memory() {
 const memorySong = new Audio('../assets/audio/quiz-game-show-timer-sba-300481542-made-with-Voicemod.mp3');
 
 function play() {
-  memorySong.volume = 0.5;
+  memorySong.volume = 0.4;
   memorySong.play().catch(error => console.error("Impossibile riprodurre il suono:", error));
 }
 

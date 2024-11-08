@@ -237,10 +237,10 @@ function getPhraseScore(phrase) {
 // Aggiorna il campo di battaglia con le frasi
 function updateBattleGround(playerCharacter, userPhrase, cpuCharacter, cpuResponse) {
       const battleElement = document.getElementById("promoBattle");
-      battleElement.innerHTML += `<p><strong>${playerCharacter}:</strong> ${userPhrase}</p>`;
-      battleElement.innerHTML += `<p><strong>${cpuCharacter}:</strong> ${cpuResponse}</p>`;
+      battleElement.innerHTML += `<p style="color: white;"><strong>${playerCharacter}:</strong> ${userPhrase}</p>`;
+      battleElement.innerHTML += `<p style="color: white;"><strong>${cpuCharacter}:</strong> ${cpuResponse}</p>`;
       scrollToBottom("promoBattle");
-}
+  }  
 
 // Verifica se c’è un vincitore
 function checkForWinner() {

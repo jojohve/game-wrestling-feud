@@ -27,10 +27,19 @@ function setupCharacterSelection(gridId, onSelect) {
     });
 }
 
-// Funzione per riprodurre l'audio del personaggio
+let currentAudio = null; // Variabile per mantenere traccia dell'audio in riproduzione
+
+// Funzione per riprodurre l'audio del personaggio senza sovrapposizioni
 function playCharacterAudio(audioSrc) {
-    const audio = new Audio(audioSrc);
-    audio.play().catch(error => {
+    // Se c'è un audio in riproduzione, lo ferma prima di riprodurne un altro
+    if (currentAudio && !currentAudio.paused) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0; // Riporta l'audio fermato all'inizio
+    }
+
+    // Crea un nuovo audio e riproducilo
+    currentAudio = new Audio(audioSrc);
+    currentAudio.play().catch(error => {
         console.error("Errore durante la riproduzione dell'audio:", error);
     });
 }
