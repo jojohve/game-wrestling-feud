@@ -169,8 +169,8 @@ function playBell() {
         console.error("Impossibile riprodurre il suono:", error);
     });
 
-    ringTheBell.volume = 0.5;
-    matchSound.volume = 0.3;
+    ringTheBell.volume = 0.4;
+    matchSound.volume = 0.2;
     matchSound.play();
 }
 

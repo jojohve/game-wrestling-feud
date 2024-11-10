@@ -71,6 +71,8 @@ function salvaDati() {
 
     localStorage.setItem('currentTurn', currentTurn);
     localStorage.setItem('result', result);
+    localStorage.setItem('selectedPlayerAudioSrc', playerAudioSrc);
+    localStorage.setItem('selectedCpuAudioSrc', cpuAudioSrc);
 }
 
 // Carica i punteggi dal localStorage
@@ -85,6 +87,8 @@ function caricaDati() {
     cpuGamePoints = parseInt(localStorage.getItem('cpuGamePoints')) || 0;
     currentTurn = parseInt(localStorage.getItem('currentTurn')) || 0;
     result = parseInt(localStorage.getItem('result')) || 0;
+    playerAudioSrc = localStorage.getItem('selectedPlayerAudioSrc') || ''; // Valore di default
+    cpuAudioSrc = localStorage.getItem('selectedCpuAudioSrc') || ''; // Valore di default
 
     // Assicurati che turnHistory sia un array anche se non ci sono dati salvati
     turnHistory = JSON.parse(localStorage.getItem('turnHistory')) || [];
@@ -97,7 +101,9 @@ function caricaDati() {
         cpuGamePoints,
         currentTurn,
         result,
-        turnHistory
+        turnHistory,
+        playerAudioSrc,
+        cpuAudioSrc
     });
 
     updateScoreDisplay();
@@ -222,6 +228,14 @@ function showLoseAlert(message) {
         resetRivalry();
     };
 }
+
+document.getElementById('playAudioButton').onclick = function () {
+    if (playerGamePoints >= 2) {
+        playCharacterAudio(playerAudioSrc);
+    } else if (cpuGamePoints >= 2) {
+        playCharacterAudio(cpuAudioSrc);
+    }
+};
 
 function resetRivalry() {
     // Resetta i punteggi e torna alla schermata principale

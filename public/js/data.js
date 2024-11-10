@@ -143,12 +143,14 @@ setupCharacterSelection('player-grid', (name) => {
     if (playerCharacterElement) {
         // Recupera il percorso dell'immagine dal data attribute
         const imgSrc = playerCharacterElement.getAttribute('data-img-src');
+        const playerAudioSrc = playerCharacterElement.getAttribute('data-audio-src');
 
         // Salva sia il nome del personaggio sia il percorso dell'immagine nel localStorage
         localStorage.setItem('selectedPlayerCharacter', name);
         localStorage.setItem('selectedPlayerImageSrc', imgSrc);
+        localStorage.setItem('selectedPlayerAudioSrc', playerAudioSrc);
 
-        console.log(`Personaggio giocatore selezionato: ${name}, Immagine salvata: ${imgSrc}`);
+        console.log(`Personaggio giocatore selezionato: ${name}, Immagine salvata: ${imgSrc}, Audio salvato: ${playerAudioSrc}`);
     }
 });
 
@@ -160,12 +162,14 @@ setupCharacterSelection('cpu-grid', (name) => {
     if (cpuCharacterElement) {
         // Recupera il percorso dell'immagine dal data attribute
         const imgSrc = cpuCharacterElement.getAttribute('data-img-src');
+        const cpuAudioSrc = cpuCharacterElement.getAttribute('data-audio-src');
 
         // Salva sia il nome del personaggio sia il percorso dell’immagine nel localStorage
         localStorage.setItem('selectedCpuCharacter', name);
         localStorage.setItem('selectedCpuImageSrc', imgSrc);
+        localStorage.setItem('selectedCpuAudioSrc', cpuAudioSrc);
 
-        console.log(`Personaggio CPU selezionato: ${name}, Immagine salvata: ${imgSrc}`);
+        console.log(`Personaggio CPU selezionato: ${name}, Immagine salvata: ${imgSrc}, Audio salvato: ${cpuAudioSrc}`);
     }
 });
 
@@ -181,10 +185,14 @@ document.getElementById('confirm-button').addEventListener('click', () => {
 
         const playerImageSrc = localStorage.getItem('selectedPlayerImageSrc'); // Recupera l'URL dell'immagine del personaggio del player
         localStorage.setItem('selectedImageSrc', playerImageSrc);
+        const playerAudioSrc = localStorage.getItem('selectedPlayerAudioSrc');
+        localStorage.setItem('selectedPlayerAudioSrc', playerAudioSrc);
 
         localStorage.setItem('selectedCpuCharacter', selectedCpuCharacter);
         const cpuImageSrc = localStorage.getItem('selectedCpuImageSrc'); // Recupera l'URL dell'immagine del personaggio della CPU
         localStorage.setItem('selectedCpuImageSrc', cpuImageSrc);
+        const cpuAudioSrc = localStorage.getItem('selectedCpuAudioSrc');
+        localStorage.setItem('selectedCpuAudioSrc', cpuAudioSrc);
 
         // Reindirizza a game.html
         window.location.href = 'root/game.html';
