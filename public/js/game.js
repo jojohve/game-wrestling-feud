@@ -229,14 +229,6 @@ function showLoseAlert(message) {
     };
 }
 
-document.getElementById('playAudioButton').onclick = function () {
-    if (playerGamePoints >= 2) {
-        playCharacterAudio(playerAudioSrc);
-    } else if (cpuGamePoints >= 2) {
-        playCharacterAudio(cpuAudioSrc);
-    }
-};
-
 function resetRivalry() {
     // Resetta i punteggi e torna alla schermata principale
     playerScore = 0;

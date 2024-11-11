@@ -148,7 +148,7 @@
     <!-- Alert di vittoria -->
     <div id="winAlert" class="custom-alert" style="display: none;">
         <div class="alert-content">
-            <button id="playAudioButton">🔊</button>
+            <button id="playWinButton">🔊</button>
             <p id="winMessage" style="font-size: 24px; color: #FFFFFF;
             margin-top: 120px;
             text-shadow: 3px 5px 2px #474747;">Congratulazioni! Hai vinto la rivalità!</p>
@@ -159,7 +159,7 @@
     <!-- Alert di sconfitta -->
     <div id="loseAlert" class="custom-alert" style="display: none;">
         <div class="alert-content">
-            <button id="playAudioButton">🔊</button>
+            <button id="playLoseButton">🔊</button>
             <p id="loseMessage" style="font-size: 24px; color: #FFFFFF;
             margin-top: 120px;
             text-shadow: 3px 5px 2px #474747;">Peccato! La CPU ha vinto la rivalità!</p>
@@ -178,6 +178,14 @@
             iniziaTurno();
             fineGioco(result);
         });
+
+        document.getElementById('playWinButton').onclick = function () {
+            playCharacterAudio(playerAudioSrc); // Riproduce l'audio del giocatore
+        };
+
+        document.getElementById('playLoseButton').onclick = function () {
+            playCharacterAudio(cpuAudioSrc); // Riproduce l'audio della CPU
+        };
     </script>
 </body>
 

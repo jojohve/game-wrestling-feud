@@ -17,6 +17,12 @@
         "button-name": "off"
       }
     ],
-    "leading-dot-classlist": "off"
+    "leading-dot-classlist": "off",
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id": "off"
+      }
+    ]
   }
 }
